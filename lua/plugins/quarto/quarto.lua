@@ -5,9 +5,7 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim", "jmbuhr/otter.nvim" }, -- optional
     config = function()
         -- initialize the plugin
-        require("quarto").setup({
-            -- any quarto-specific options go here
-        })
+        require("quarto").setup({})
 
         -- Render document
         vim.keymap.set(

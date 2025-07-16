@@ -42,7 +42,6 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 
 -- NeoTree Keymaps --
 vim.keymap.set("n", "<leader>e", function()
-    -- Toggle Neo-tree (will open or close depending on current state)
     vim.cmd("Neotree toggle filesystem left")
 end, { desc = "Toggle Neo-tree" })
 
