@@ -95,6 +95,10 @@ function M.setup_mason_and_cmp()
             { name = "buffer" },
             { name = "path" },
             { name = "otter" },
+            { name = "snippets" },
+            providers = {
+                lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+            },
         },
         formatting = {
             fields = { "abbr", "menu", "kind" },
