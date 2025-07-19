@@ -26,7 +26,7 @@ end
 function M.setup_mason_and_cmp()
     require("mason").setup()
     require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pylsp", "r_language_server" },
+        ensure_installed = { "lua_ls", "pyright", "r_language_server" },
         handlers = {
             function(server)
                 require("lspconfig")[server].setup({})
@@ -38,6 +38,21 @@ function M.setup_mason_and_cmp()
                             runtime = { version = "LuaJIT" },
                             diagnostics = { globals = { "vim" } },
                             workspace = { library = { vim.env.VIMRUNTIME } },
+                        },
+                    },
+                })
+            end,
+            ["pyright"] = function()
+                require("lspconfig").pyright.setup({
+                    settings = {
+                        python = {
+                            analysis = {
+                                typeCheckingMode = "basic", -- or "strict"
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                                diagnosticMode = "workspace", -- not "openFilesOnly"
+                            },
+                            pythonPath = "/home/.virtualenvs/neovim",
                         },
                     },
                 })

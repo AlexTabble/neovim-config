@@ -19,14 +19,25 @@ map("n", "<leader>wq", "<CMD> update q<CR>")
 map("i", "jk", "<ESC>")
 
 -- New Windows
-map("n", "<leader>o", "<CMD>vsplit<CR>")
-map("n", "<leader>p", "<CMD>split<CR>")
+map("n", "|", "<CMD>vsplit<CR>")
+map("n", "-", "<CMD>split<CR>")
 
 -- Window Navigation
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-j>", "<C-w>j")
+
+-- Open Terminal
+
+-- File Navigation
+vim.keymap.set("n", "<leader>nn", function()
+    vim.cmd("edit ~/.config/nvim")
+end, { desc = "Open nvim config" })
+
+vim.keymap.set("n", "<leader>nc", function()
+    vim.cmd("edit ~/.config")
+end, { desc = "Edit .config" })
 
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")

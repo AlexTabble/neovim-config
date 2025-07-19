@@ -29,6 +29,6 @@ require("lazy").setup({
         { import = "plugins.tools" },
         { import = "plugins.lsp.init" },
         { import = "plugins.ui" },
-        { import = "plugins.quarto" },
+        { import = "plugins.terminal.init" },
     },
 })

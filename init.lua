@@ -1,5 +1,6 @@
 -- Super Important Keymaps --
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Initialize Settings --
 require("config.settings")

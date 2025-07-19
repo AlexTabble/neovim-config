@@ -1,11 +1,15 @@
--- Add this block to your plugin setup
 return {
     "quarto-dev/quarto-nvim",
     ft = { "quarto", "markdown", "rmd", "qmd" },
     dependencies = { "nvim-telescope/telescope.nvim", "jmbuhr/otter.nvim" }, -- optional
     config = function()
         -- initialize the plugin
-        require("quarto").setup({})
+        require("quarto").setup({
+            codeRunner = {
+                enabled = true,
+                default_method = "iron",
+            },
+        })
 
         -- Render document
         vim.keymap.set(
@@ -30,5 +34,7 @@ return {
             ":lua require'quarto'.quartoUpdatePreview()<cr>",
             { noremap = true, silent = true, desc = "Quarto: Update/Start preview" }
         )
+
+        vim.keymap.set("n", "<leader>;r", require("quarto.runner").run_cell, { desc = "Run cell", silent = true })
     end,
 }
