@@ -1,4 +1,3 @@
--- File: lua/plugins/autopairs.lua
 return {
     "windwp/nvim-autopairs",
     event = "InsertEnter", -- load only when entering Insert mode
@@ -10,7 +9,7 @@ return {
             disable_filetype = { "TelescopePrompt", "vim" }, -- disable in certain filetypes
         })
 
-        -- Optional: integrate with nvim-cmp (completion engine)
+        -- Completion for autopairs
         local cmp_status, cmp = pcall(require, "cmp")
         if cmp_status then
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")

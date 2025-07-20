@@ -205,7 +205,7 @@ if vim.api.nvim_exec("echo argc()", true) == "0" then
     local header = {
         type = "text",
         -- val = Headers[math.random(#Headers)],
-        val = Headers[3],
+        val = Headers[3], --Choose Header for Home Page
         opts = {
             position = "center",
             hl = "Whitespace",
@@ -215,10 +215,6 @@ if vim.api.nvim_exec("echo argc()", true) == "0" then
 
     local footer = {
         type = "text",
-        -- Change 'rdn' to any program that gives you a random quote.
-        -- https://github.com/BeyondMagic/scripts/blob/master/quotes/rdn
-        -- Which returns one to three lines, being each divided by a line break.
-        -- Or just an array: { "I see you:", "Above you." }
         val = {
             "You are more likely to be bitten by a ",
             "             New Yorker",
@@ -238,9 +234,7 @@ if vim.api.nvim_exec("echo argc()", true) == "0" then
             button("f", "  Find file", "RainbowYellow", ":Telescope find_files<CR>"),
             button("h", "  Recently opened files", "RainbowBlue", ":Telescope oldfiles<CR>"),
             button("l", "  Projects", "RainbowOrange", ":Telescope marks<CR>"),
-            --button("r", "  Frecency/MRU",          'RainbowCyan', ':Telescope oldfiles<CR>'),
             button("g", "  Open Last Session", "RainbowGreen", ":source ~/.config/nvim/session.vim<CR>"),
-            --button("m", "  Word Finder",           'RainbowViolet', ':Telescope live_grep<CR>'),
         },
         opts = {
             spacing = 1,
