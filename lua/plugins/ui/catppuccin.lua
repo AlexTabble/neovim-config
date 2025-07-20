@@ -14,17 +14,20 @@ return {
                         enabled = true,
                     },
                 },
-                color_overrides = {
-                    mocha = {
-                        base = "#000000",
-                        mantle = "#000000",
-                        crust = "#000000",
-                    },
-                },
+                -- color_overrides = {
+                --     mocha = {
+                --         base = "#000000",
+                --         mantle = "#000000",
+                --         crust = "#000000",
+                --     },
+                -- },
             })
-
-            -- set the colorscheme
-            vim.cmd.colorscheme("catppuccin")
         end,
+    },
+    {
+        "folke/tokynight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
     },
 }

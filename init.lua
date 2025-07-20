@@ -13,3 +13,6 @@ require("config.autocommands")
 
 -- Initialize Keymaps --
 require("config.keymaps")
+
+-- Set colorscheme --
+vim.cmd.colorscheme("tokyonight")
