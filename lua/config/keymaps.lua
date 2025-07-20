@@ -13,7 +13,7 @@ map("n", "<leader>w", "<CMD>update<CR>")
 map("n", "<leader>q", "<CMD>q<CR>")
 
 -- Write Quit --
-map("n", "<leader>wq", "<CMD> update q<CR>")
+-- map("n", "<leader>wq", "<CMD> update q<CR>")
 
 -- Exit Insert Mode
 map("i", "jk", "<ESC>")
@@ -38,6 +38,15 @@ end, { desc = "Open nvim config" })
 vim.keymap.set("n", "<leader>nc", function()
     vim.cmd("edit ~/.config")
 end, { desc = "Edit .config" })
+
+vim.keymap.set("n", "<leader>no", function()
+    vim.cmd("edit ~/Documents/ObVault")
+end)
+
+vim.keymap.set("n", "<leader>nh", function()
+    vim.cmd("edit ~/")
+    vim.cmd("Alpha")
+end)
 
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")
