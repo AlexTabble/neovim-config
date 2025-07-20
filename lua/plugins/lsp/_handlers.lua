@@ -26,7 +26,7 @@ end
 function M.setup_mason_and_cmp()
     require("mason").setup()
     require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "r_language_server" },
+        ensure_installed = { "lua_ls", "pyright", "r_language_server", "texlab" },
         handlers = {
             function(server)
                 require("lspconfig")[server].setup({})

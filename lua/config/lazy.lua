@@ -30,5 +30,6 @@ require("lazy").setup({
         { import = "plugins.lsp.init" },
         { import = "plugins.ui" },
         { import = "plugins.terminal.init" },
+        { import = "plugins.markdown" },
     },
 })

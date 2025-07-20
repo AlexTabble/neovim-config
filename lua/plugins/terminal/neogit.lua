@@ -1,3 +1,4 @@
+-- Not really neogit as I'm still learning git
 return {
     "akinsho/toggleterm.nvim",
     version = "*",
