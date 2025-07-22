@@ -15,4 +15,4 @@ require("config.autocommands")
 require("config.keymaps")
 
 -- Set colorscheme --
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("tokyonight-night")

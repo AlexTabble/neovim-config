@@ -9,6 +9,7 @@ return {
                 enabled = true,
                 default_method = "iron",
             },
+            languages = { "r,", "python", "bash", "html" },
         })
 
         -- Render document
