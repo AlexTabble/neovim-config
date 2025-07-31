@@ -32,7 +32,7 @@ map("n", "<C-j>", "<C-w>j")
 
 -- File Navigation
 vim.keymap.set("n", "<leader>nn", function()
-    vim.cmd("edit ~/.config/nvim")
+    vim.cmd("NeovimProjectLoad ~/.config/nvim")
 end, { desc = "Open nvim config" })
 
 vim.keymap.set("n", "<leader>nc", function()
@@ -48,6 +48,10 @@ vim.keymap.set("n", "<leader>nh", function()
     vim.cmd("Alpha")
 end)
 
+vim.keymap.set("n", "<leader>np", function()
+    vim.cmd("NeovimProjectDiscover")
+end, { desc = "Pick Project" })
+
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")
 map("n", "<C-Right>", "<C-w>>")
@@ -59,32 +63,13 @@ vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find f
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Telescope fuzzy find" })
 
 -- NeoTree Keymaps --
 vim.keymap.set("n", "<leader>e", function()
     vim.cmd("Neotree toggle filesystem left")
 end, { desc = "Toggle Neo-tree" })
 
-local M = {}
-
--- DAP keymaps -- Not used at the moment
-function M.dap(dap)
-    local map = vim.keymap.set
-    local opts = { noremap = true, silent = true }
-
-    map("n", "<F5>", dap.continue, opts)
-    map("n", "<F10>", dap.step_over, opts)
-    map("n", "<F11>", dap.step_into, opts)
-    map("n", "<F12>", dap.step_out, opts)
-    map("n", "<Leader>b", dap.toggle_breakpoint, opts)
-    map("n", "<Leader>B", function()
-        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end, opts)
-    map("n", "<Leader>lp", function()
-        dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end, opts)
-    map("n", "<Leader>dr", dap.repl.open, opts)
-    map("n", "<Leader>dl", dap.run_last, opts)
-end
-
-return M
+vim.keymap.set("n", "<leader>g", function()
+    vim.cmd("Neogit")
+end, { desc = "Git" })
