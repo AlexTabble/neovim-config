@@ -43,7 +43,7 @@ return {
                             if current_chunk_lang == "r" then
                                 return { "R" }
                             else
-                                return { "R" }
+                                return { "ipython --no-autindent" }
                             end
                         end,
 
@@ -106,7 +106,7 @@ return {
             ignore_blank_lines = true,
         })
 
-        -- Auto REPL on filetype - Breaks the REPL on creation of new file
+        -- Auto REPL on filetype - Breaks the REPL on creation of new file with no code yet, don't activate
         vim.api.nvim_create_autocmd("FileType", {
             pattern = { "python", "r", "quarto", "qmd", "rmd", "ipynb" },
             callback = function()
