@@ -1,6 +1,6 @@
 return {
     "epwalsh/obsidian.nvim",
-    version = "*", -- recommended: latest release
+    version = "*",
     lazy = true,
     event = {
         "BufReadPre " .. vim.fn.expand("~") .. "/Documents/ObVault/*.md",
@@ -21,7 +21,6 @@ return {
             nvim_cmp = true,
         },
 
-        -- This will save new notes to the "Fleeting Notes" subdir of the vault
         notes_subdir = "Fleeting Notes",
         new_notes_location = "notes_subdir",
 
@@ -36,7 +35,6 @@ return {
         end,
 
         note_frontmatter_func = function(note)
-            -- Auto-tag the note with the parent directory name
             local parent = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":t")
             return {
                 tags = { parent },
@@ -47,15 +45,14 @@ return {
         follow_url_func = function(url)
             vim.fn.jobstart({ "xdg-open", url }, { detach = true })
         end,
+
+        ui = {
+            enable = false, -- move this here if you want UI disabled
+        },
     },
     keys = {
         { "<leader>on", "<cmd>ObsidianNew<CR>",        desc = "New Note" },
         { "<leader>of", "<cmd>ObsidianFollowLink<CR>", desc = "Follow Link" },
         { "<leader>ob", "<cmd>ObsidianBacklinks<CR>",  desc = "Show Backlinks" },
     },
-    config = function()
-        require("obsidian").setup({
-            ui = { enable = false },
-        })
-    end,
 }

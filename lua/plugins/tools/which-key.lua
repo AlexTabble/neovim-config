@@ -72,6 +72,11 @@ return {
             { "<leader>n",        group = "CWD" },
             { "<leader>nn",       desc = "Open nvim config" },
             { "<leader>nc",       desc = "Open .config" },
+            { "<leader>no",       desc = "Open Vault" },
+            { "<leader>o",        desc = "Obsidian commands" },
+            { "<leader>of",       desc = "Follow link" },
+            { "<leader>on",       desc = "Create new note" },
+            { "<leader>ob",       desc = "Show backlinks" },
 
             { "<leader>g",        desc = "Open git terminal" },
             { "<leader>" },
