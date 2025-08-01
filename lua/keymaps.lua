@@ -1,0 +1,69 @@
+local builtin = require("telescope.builtin")
+
+-- Normal Keymaps --
+-- Better functionality for general keymaps --
+local function map(mode, lhs, rhs)
+	vim.keymap.set(mode, lhs, rhs, { silent = true })
+end
+
+--Save
+map("n", "<leader>w", "<CMD>update<CR>")
+
+-- Quit
+map("n", "<leader>x", "<CMD>q<CR>")
+
+-- New Windows
+map("n", "|", "<CMD>vsplit<CR>")
+map("n", "-", "<CMD>split<CR>")
+
+-- Window Navigation
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-l>", "<C-w>l")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-j>", "<C-w>j")
+
+-- Open Terminal
+
+-- File Navigation
+vim.keymap.set("n", "<leader>nn", function()
+	vim.cmd("NeovimProjectLoad ~/.config/nvim")
+end, { desc = "Open nvim config" })
+
+vim.keymap.set("n", "<leader>nc", function()
+	vim.cmd("edit ~/.config")
+end, { desc = "Edit .config" })
+
+vim.keymap.set("n", "<leader>no", function()
+	vim.cmd("edit ~/Documents/ObVault")
+end)
+
+vim.keymap.set("n", "<leader>nh", function()
+	vim.cmd("edit ~/")
+	vim.cmd("Alpha")
+end)
+
+vim.keymap.set("n", "<leader>np", function()
+	vim.cmd("NeovimProjectDiscover")
+end, { desc = "Pick Project" })
+
+-- Resize Windows
+map("n", "<C-Left>", "<C-w><")
+map("n", "<C-Right>", "<C-w>>")
+map("n", "<C-Up>", "<C-w>+")
+map("n", "<C-Down>", "<C-w>-")
+
+-- Telescope Keymaps --
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Telescope fuzzy find" })
+
+-- NeoTree Keymaps --
+vim.keymap.set("n", "<leader>e", function()
+	vim.cmd("Neotree toggle filesystem left")
+end, { desc = "Toggle Neo-tree" })
+
+vim.keymap.set("n", "<leader>g", function()
+	vim.cmd("Neogit")
+end, { desc = "Git" })

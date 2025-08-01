@@ -2,17 +2,16 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Initialize Settings --
-require("config.settings")
+vim.g.have_nerd_font = true
 
--- Initialize Lazy --
-require("config.lazy")
+require("settings")
 
--- Initialzie Autocommands
-require("config.autocommands")
+require("lsp")
 
--- Initialize Keymaps --
-require("config.keymaps")
+require("lazy-bootsrap")
 
--- Set colorscheme --
+require("lazy-plugins")
+
+require("keymaps")
+
 vim.cmd.colorscheme("tokyonight-night")
