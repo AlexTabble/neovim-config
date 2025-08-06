@@ -9,4 +9,14 @@ return {
 		"Pipfile",
 		".git",
 	},
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					enabled = false,
+					ignore = { "E501", "E203", "E231", "E122" },
+				},
+			},
+		},
+	},
 }
