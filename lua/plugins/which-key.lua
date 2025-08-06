@@ -26,19 +26,17 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>p", group = "Quarto" },
-			{ "<leader>qP", desc = "Preview Document" },
+			{ "<leader>q", group = "Quarto" },
 
-			{ "<leader>d", group = "DAP(Unused)" },
-			{ "<leader>dO", desc = "Run to Cursor" },
-			{ "<leader>db", desc = "Toggle Breakpoint" },
-			{ "<leader>dc", desc = "Continue" },
-			{ "<leader>dd", desc = "Step Out" },
-			{ "<leader>di", desc = "Step Into" },
-			{ "<leader>do", desc = "Step Over" },
-			{ "<leader>dq", desc = "Terminate" },
-			{ "<leader>du", desc = "Toggle UI" },
-			{ "<leader>e", desc = "Toggle File Explorer" },
+			{ "<leader>c", group = "CSV" },
+
+			{ "<leader>d", group = "Buffer Outline" },
+
+			{ "<leader>D", group = "Diagnostics" },
+
+			{ "<leader>e", group = "Oil" },
+
+			{ "<leader>m", group = "Mark" },
 
 			{ "<leader>f", group = "Find" },
 			{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
@@ -46,37 +44,20 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help" },
 
-			{ "<leader>r", group = "Refactor" },
-			{ "<leader>rr", desc = "Rename Symbol" },
-
 			{ "<leader>t", group = "Terminal" },
-			{ "<leader>tr", desc = "Toggle REPL" },
-			{ "<leader>tR", desc = "Restart REPL" },
-			{ "<leader>tc", desc = "Send motion / visual" },
-			{ "<leader>tf", desc = "Send file" },
-			{ "<leader>tl", desc = "Send line" },
-			{ "<leader>tp", desc = "Send paragraph" },
-			{ "<leader>tu", desc = "Send until cursor" },
-			{ "<leader>tm", desc = "Send from mark" },
-			{ "<leader>tb", desc = "Send code block" },
-			{ "<leader>tn", desc = "Send code block and move" },
-			{ "<leader>tmc", desc = "Mark motion / visual" },
-			{ "<leader>tmd", desc = "Remove mark" },
-			{ "<leader>t<cr>", desc = "Send <CR>" },
-			{ "<leader>t<space>", desc = "Interrupt REPL" },
-			{ "<leader>tq", desc = "Exit REPL" },
-			{ "<leader>tcl", desc = "Clear REPL" },
 
-			{ "<leader>n", group = "CWD" },
+			{ "<leader>n", group = "Project" },
 			{ "<leader>nn", desc = "Open nvim config" },
 			{ "<leader>nc", desc = "Open .config" },
 			{ "<leader>no", desc = "Open Vault" },
-			{ "<leader>o", desc = "Obsidian commands" },
-			{ "<leader>of", desc = "Follow link" },
-			{ "<leader>on", desc = "Create new note" },
-			{ "<leader>ob", desc = "Show backlinks" },
 
+			{ "<leader>o", desc = "Obsidian" },
+
+			{ "<leader>p", desc = "Preview" },
 			{ "<leader>g", desc = "Open git terminal" },
+
+			{ "<leader>?", group = "Show All" },
+
 			{ "<leader>" },
 		})
 	end,
