@@ -37,7 +37,7 @@ vim.keymap.set("n", "<leader>nc", function()
 end, { desc = "Edit .config" })
 
 vim.keymap.set("n", "<leader>no", function()
-	vim.cmd("edit ~/Documents/ObVault")
+	vim.cmd("NeovimProjectLoad ~/Documents/ObVault")
 end)
 
 vim.keymap.set("n", "<leader>nh", function()
