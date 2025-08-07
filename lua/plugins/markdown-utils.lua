@@ -33,6 +33,9 @@ return {
 			completion = {
 				blink = true,
 			},
+			picker = {
+				name = "telescope.nvim",
+			},
 
 			notes_subdir = "Fleeting Notes",
 			new_notes_location = "notes_subdir",
@@ -60,7 +63,7 @@ return {
 			end,
 
 			ui = {
-				enable = false, -- move this here if you want UI disabled
+				enable = false,
 			},
 		},
 		keys = {
