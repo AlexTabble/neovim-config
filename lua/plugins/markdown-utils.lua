@@ -31,7 +31,7 @@ return {
 			},
 
 			completion = {
-				blink = true,
+				cmp = true,
 			},
 			picker = {
 				name = "telescope.nvim",
