@@ -28,27 +28,14 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
 -- File Navigation
-vim.keymap.set("n", "<leader>nn", function()
-	vim.cmd("NeovimProjectLoad ~/.config/nvim")
-end, { desc = "Open nvim config" })
-
 vim.keymap.set("n", "<leader>nc", function()
 	vim.cmd("edit ~/.config")
 end, { desc = "Edit .config" })
-
-vim.keymap.set("n", "<leader>no", function()
-	vim.cmd("NeovimProjectLoad ~/Documents/ObVault")
-end)
 
 vim.keymap.set("n", "<leader>nh", function()
 	vim.cmd("edit ~/")
 	vim.cmd("Alpha")
 end, { desc = "Go Home" })
-
-vim.keymap.set("n", "<leader>np", function()
-	vim.cmd("NeovimProjectDiscover")
-end, { desc = "Pick Project" })
-
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")
 map("n", "<C-Right>", "<C-w>>")

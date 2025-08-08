@@ -8,6 +8,8 @@
 
 return {
 	"lukas-reineke/virt-column.nvim",
+	event = { "BufReadPre" },
+	lazy = true,
 	opts = {
 		-- char = "|",
 		-- char = "",

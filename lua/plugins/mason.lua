@@ -1,7 +1,10 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		opts = {},
+		opts = {
+			auto_update = false,
+			run_on_start = false,
+		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
