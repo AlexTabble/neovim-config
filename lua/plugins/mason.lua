@@ -12,6 +12,8 @@ return {
 			"mason-org/mason.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
+		lazy = true,
+		event = { "User" },
 		config = function()
 			local installer = require("mason-tool-installer")
 			installer.setup({
