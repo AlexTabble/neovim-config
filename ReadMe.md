@@ -11,7 +11,7 @@
 
 ---
 
-> [!Important] When you install neovim
+> [!IMPORTANT] When you install neovim
 > Use [bob](https://github.com/MordechaiHadad/bob) when installing neovim for the first time. The build version
 > should be as up to date as possible, otherwise you'll get errors due to old
 > LuaJIT and Lua versions
