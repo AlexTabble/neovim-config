@@ -14,5 +14,7 @@ require("lazy-plugins")
 
 require("keymaps")
 
+-- vim.cmd.colorscheme("onedark")
 -- vim.cmd.colorscheme("tokyonight-night")
-vim.cmd.colorscheme("onedark")
+vim.cmd.colorscheme("kanagawa-wave")
+-- vim.cmd.colorscheme("evergarden")
