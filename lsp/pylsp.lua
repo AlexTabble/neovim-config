@@ -9,6 +9,7 @@ return {
 		"Pipfile",
 		".git",
 	},
+	pythonPath = "~/.virtualenvs/neovim",
 	settings = {
 		pylsp = {
 			plugins = {

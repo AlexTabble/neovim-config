@@ -1,28 +1,31 @@
--- -- vim: ts=2 sts=2 sw=2 et
---
-
 return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
+			-- "hrsh7th/cmp-buffer",
+			-- "hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lua",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
-			"rafamadriz/friendly-snippets",
+			-- "rafamadriz/friendly-snippets",
 			"epwalsh/obsidian.nvim", -- Optional: for [[link]] completion
 			"onsails/lspkind.nvim",
 		},
 		event = { "InsertEnter" },
-		lazy = "true",
+		lazy = true,
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
 			require("luasnip.loaders.from_vscode").lazy_load()
+
+			luasnip.setup({
+				enable_autosnippets = true, -- This is required for auto-triggering
+				history = true,
+				updateevents = "TextChanged,TextChangedI",
+			})
 
 			cmp.setup({
 				snippet = {
@@ -32,7 +35,7 @@ return {
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<C-Y>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
@@ -76,21 +79,21 @@ return {
 			})
 
 			-- Optionally configure cmdline completion (e.g., `/`, `:`)
-			cmp.setup.cmdline("/", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
-			})
-
-			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{ name = "cmdline" },
-				}),
-			})
+			-- cmp.setup.cmdline("/", {
+			-- 	mapping = cmp.mapping.preset.cmdline(),
+			-- 	sources = {
+			-- 		{ name = "buffer" },
+			-- 	},
+			-- })
+			--
+			-- cmp.setup.cmdline(":", {
+			-- 	mapping = cmp.mapping.preset.cmdline(),
+			-- 	sources = cmp.config.sources({
+			-- 		{ name = "path" },
+			-- 	}, {
+			-- 		{ name = "cmdline" },
+			-- 	}),
+			-- })
 		end,
 	},
 }

@@ -158,3 +158,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = true })
 end, { desc = "Show All" })
+
+-- Luasnip Keymaps
+-- vim.keymap.set("n", "<leader><leader>l")
+
+-- Test keymap
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "markdown",
+-- 	callback = function()
+-- 		local snippets = require("luasnip").get_snippets("markdown")
+-- 		print("Registered markdown snippets:")
+-- 		print(vim.inspect(snippets))
+-- 	end,
+-- })
