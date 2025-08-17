@@ -21,6 +21,8 @@ return {
 			ensure_installed = {
 				"json",
 				"javascript",
+				"query",
+				"vimdoc",
 				"yaml",
 				"html",
 				"markdown",
