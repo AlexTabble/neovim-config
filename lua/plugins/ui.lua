@@ -1,42 +1,35 @@
 return {
-	{ -- show tree of symbols in the current file
-		"stevearc/aerial.nvim",
-		lazy = true,
-		keys = {
-			{ "<leader>do", "<cmd>AerialToggle<CR>", desc = "Toggle [d]ocument [o]utline (aerial)" },
-			{ "<leader>dn", "<cmd>AerialNavToggle<CR>", desc = "Toggle [d]ocument [n]avigator (aerial)" },
-		},
-		opts = {
-			layout = { min_width = 25 },
-		},
-	},
+	-- { -- show tree of symbols in the current file
+	-- 	"stevearc/aerial.nvim",
+	-- 	lazy = true,
+	-- 	keys = {
+	-- 		{ "<leader>do", "<cmd>AerialToggle<CR>", desc = "Toggle [d]ocument [o]utline (aerial)" },
+	-- 		{ "<leader>dn", "<cmd>AerialNavToggle<CR>", desc = "Toggle [d]ocument [n]avigator (aerial)" },
+	-- 	},
+	-- 	opts = {
+	-- 		layout = { min_width = 25 },
+	-- 	},
+	-- },
 	{ -- Highlight todo, notes, etc in comments
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
+
+		--TODO: A Todo block
+		--WARN: A Warning Block
+		--NOTE: A Note Block
+		--BUG: A bug block
+		--PERF: A Test Block
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		ft = "python",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {},
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = { "UIEnter" },
-		lazy = true,
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "onedark",
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	ft = "python",
+	-- 	main = "ibl",
+	-- 	---@module "ibl"
+	-- 	---@type ibl.config
+	-- 	opts = {},
+	-- },
 	-- {
 	--     "nvim-neo-tree/neo-tree.nvim",
 	--     branch = "v3.x",
