@@ -1,0 +1,169 @@
+{
+  "eq": {
+    "prefix": ["eq"],
+    "body": ["\\$\\$", "$1", "\\$\\$ {#eq-${2:label}}"]
+  },
+  "inline-math": {
+    "prefix": ["mk"],
+    "body": ["${1:math}$"]
+  },
+  "Math Environment": {
+    "prefix": ["dm"],
+    "body": ["$$", "${0}", "$$"]
+  },
+  "img": {
+    "prefix": ["img"],
+    "body": ["![](./img/$1)"]
+  },
+  "br": {
+    "prefix": ["br"],
+    "body": ["<br/>"]
+  },
+  "todo": {
+    "prefix": ["todo"],
+    "body": ["* [ ] ${1:task} -- due:${2:today} ${3: project:}"]
+  },
+  "tip": {
+    "prefix": ["tip"],
+    "body": [">[!Tip] ${1:Header}", "> $2"]
+  },
+  "important": {
+    "prefix": ["important"],
+    "body": [">[!Important] ${1:Header}", "> $2"]
+  },
+  "note": {
+    "prefix": ["note"],
+    "body": [">[!Note] ${1:Header}", "> $2"]
+  },
+  "danger": {
+    "prefix": ["danger"],
+    "body": [">[!Danger] ${1:Header}", "> $2"]
+  },
+  "bug": {
+    "prefix": ["bug"],
+    "body": [">[!Bug] ${1:Header}", "> $2"]
+  },
+  "definition-block": {
+    "prefix": ["Def"],
+    "body": [">[!Definition] ${1:Title}", "> $2"]
+  },
+  "equation-block": {
+    "prefix": ["eq"],
+    "body": [">[!Equation] ${1:Title}", "> $2"]
+  },
+  "()": {
+    "prefix": "()",
+    "body": "\\left( ${1} \\right)$0",
+    "description": "Left/right parentheses"
+  },
+  "->": {
+    "prefix": "->",
+    "body": "\\rightarrow ",
+    "description": "Right arrow"
+  },
+  "<-": {
+    "prefix": "<-",
+    "body": "\\leftarrow ",
+    "description": "Left arrow"
+  },
+  "<=": {
+    "prefix": "<=",
+    "body": "\\leq ",
+    "description": "Less than or equal"
+  },
+  ">=": {
+    "prefix": ">=",
+    "body": "\\geq ",
+    "description": "Greater than or equal"
+  },
+  "iff": {
+    "prefix": "iff",
+    "body": "\\iff ",
+    "description": "If and only if"
+  },
+  "f": {
+    "prefix": "f",
+    "body": "\\frac{${1:numerator}}{${2:denominator}}$0",
+    "description": "Fraction with placeholder"
+  },
+  "ff": {
+    "prefix": "ff",
+    "body": "\\frac{$1}{$2}$0",
+    "description": "Fraction quick"
+  },
+  "sqrt": {
+    "prefix": "sqrt",
+    "body": "\\sqrt{${1:expression}}$0",
+    "description": "Square root"
+  },
+  "nthroot": {
+    "prefix": "nrt",
+    "body": "\\sqrt[${1:n}]{${2:expression}}$0",
+    "description": "n-th root"
+  },
+  "rd": {
+    "prefix": "rd",
+    "body": "^{$1}$0",
+    "description": "Superscript"
+  },
+  "_": {
+    "prefix": "_",
+    "body": "_{${1:i}}$0",
+    "description": "Subscript"
+  },
+  "sum": {
+    "prefix": "sum",
+    "body": "\\sum_{${1:i=1}}^{${2:n}} ${3:f(x)}$0",
+    "description": "Summation"
+  },
+  "prod": {
+    "prefix": "prod",
+    "body": "\\prod_{${1:i=1}}^{${2:n}} ${3:a_i}$0",
+    "description": "Product"
+  },
+  "int": {
+    "prefix": "int",
+    "body": "\\int_{${1:a}}^{${2:b}} ${3:f(x)} \\, d${4:x}$0",
+    "description": "Integral"
+  },
+  "dblint": {
+    "prefix": "iint",
+    "body": "\\iint_{${1:Region}} ${2:f(x,y)} \\, d${3:x} d${4:y}$0",
+    "description": "Double integral"
+  },
+  "lim": {
+    "prefix": "lim",
+    "body": "\\lim_{${1:n} \\to ${2:\\infty}} ${3:a_n}$0",
+    "description": "Limit"
+  },
+  "inf": {
+    "prefix": "inf",
+    "body": "\\infty ",
+    "description": "Infinity"
+  },
+  "vec": {
+    "prefix": "vec",
+    "body": "\\vec{${1:v}}$0",
+    "description": "Vector"
+  },
+  "dot": {
+    "prefix": "dot",
+    "body": "\\cdot ",
+    "description": "Dot product / multiplication"
+  },
+  "up": {
+    "prefix": "up",
+    "body": "\\uparrow ",
+    "description": "Up arrow"
+  },
+  "down": {
+    "prefix": "down",
+    "body": "\\downarrow ",
+    "description": "Down arrow"
+  },
+  "in": {
+    "prefix": "in",
+    "body": "\\in",
+    "description": "Element of"
+  }
+}

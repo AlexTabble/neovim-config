@@ -1,0 +1,37 @@
+{
+  "\"gentbl(\\d+)x(\\d+)\"": {
+    "body": "endsnippet\n\npre_expand \"add_row(snip)\"\nsnippet \"tr(\\d+)\" \"Add table row of dimension ...\" r",
+    "description": "Generate table of *width* by *height*",
+    "prefix": "\"gentbl(\\d+)x(\\d+)\""
+  },
+  "()": {
+    "body": "\\left( 1 \\right) $0",
+    "description": "left( right)",
+    "prefix": "()"
+  },
+  "->": {
+    "body": "\\rightarrow",
+    "description": "right arrow",
+    "prefix": "->"
+  },
+  "/": {
+    "body": "\\\\frac{${VISUAL}}{$1}$0",
+    "description": "Fraction",
+    "prefix": "/"
+  },
+  "//": {
+    "body": "\\\\frac{$1}{$2}$0",
+    "description": "Fraction",
+    "prefix": "//"
+  },
+  "<=": {
+    "body": "\\le ",
+    "description": "leq",
+    "prefix": "<="
+  },
+  ">=": {
+    "body": "\\ge ",
+    "description": "geq",
+    "prefix": ">="
+  }
+}
