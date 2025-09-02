@@ -37,7 +37,7 @@ return {
 	{ -- Comment enables keymap "gc" to comment visual regions/lines
 		"numToStr/Comment.nvim",
 		opts = {},
-		lazy = true,
+		-- lazy = true,
 		config = function()
 			require("Comment").setup()
 		end,

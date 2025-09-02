@@ -26,7 +26,6 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>q", group = "Quarto" },
 
 			{ "<leader>c", group = "CSV" },
 
@@ -35,6 +34,9 @@ return {
 			{ "<leader>D", group = "Diagnostics" },
 
 			{ "<leader>e", group = "Oil" },
+
+			{ "<leader>r", group = "Rename Stuff" },
+			{ "<leader>rn", group = "Rename" },
 
 			{ "<leader>m", group = "Mark" },
 
@@ -55,6 +57,7 @@ return {
 
 			{ "<leader>p", desc = "Preview" },
 			{ "<leader>g", desc = "Open git terminal" },
+			{ "<leader>x", desc = "Quit" },
 
 			{ "<leader>?", group = "Show All" },
 

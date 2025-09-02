@@ -15,7 +15,7 @@ map("n", "<leader>x", "<CMD>q<CR>")
 
 -- New Windows
 map("n", "|", "<CMD>vsplit<CR>")
-map("n", "-", "<CMD>split<CR>")
+map("n", "-", "<CMD>split<CR>") -- I basically never use this keymap
 
 -- Window Navigation
 map("n", "<C-h>", "<C-w>h")
@@ -29,13 +29,9 @@ map("n", "<C-u>", "<C-u>zz")
 
 -- File Navigation
 vim.keymap.set("n", "<leader>nc", function()
-	vim.cmd("edit ~/.config")
+	-- vim.cmd("edit ~/.config")
 end, { desc = "Edit .config" })
 
-vim.keymap.set("n", "<leader>nh", function()
-	vim.cmd("edit ~/")
-	vim.cmd("Alpha")
-end, { desc = "Go Home" })
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")
 map("n", "<C-Right>", "<C-w>>")
@@ -48,6 +44,8 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live gr
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Telescope fuzzy find" })
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope builtin<CR>", { desc = "Telescope pickers" })
+vim.keymap.set("n", "<leader>fgc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git Commits" })
 
 -- Harpoon Keymaps --
 harpoon:setup()
@@ -55,20 +53,24 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>ma", function()
 	harpoon:list():add()
 end, { desc = "Add mark" })
+vim.keymap.set("n", "<leader>md", function()
+	harpoon:list():remove()
+end, { desc = "Remove mark" })
+
 vim.keymap.set("n", "<leader>mo", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Open mark List" })
 
-vim.keymap.set("n", "<leader>m1", function()
+vim.keymap.set("n", "<leader>u", function()
 	harpoon:list():select(1)
 end, { desc = "Select Harpoon 1" })
-vim.keymap.set("n", "<leader>m2", function()
+vim.keymap.set("n", "<leader>i", function()
 	harpoon:list():select(2)
 end, { desc = "Select Harpoon 2" })
-vim.keymap.set("n", "<leader>m3", function()
+vim.keymap.set("n", "<leader>;", function()
 	harpoon:list():select(3)
 end, { desc = "Select Harpoon 3" })
-vim.keymap.set("n", "<leader>m4", function()
+vim.keymap.set("n", "<leader>'", function()
 	harpoon:list():select(4)
 end, { desc = "Select Harpoon 4" })
 
@@ -159,10 +161,6 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = true })
 end, { desc = "Show All" })
 
--- Luasnip Keymaps
--- vim.keymap.set("n", "<leader><leader>l")
-
--- Test keymap
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	pattern = "markdown",
 -- 	callback = function()
@@ -171,3 +169,4 @@ end, { desc = "Show All" })
 -- 		print(vim.inspect(snippets))
 -- 	end,
 -- })
+--

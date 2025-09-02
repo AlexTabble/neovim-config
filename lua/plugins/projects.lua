@@ -1,39 +1,46 @@
 return {
 	"coffebar/neovim-project",
+	lazy = true,
+	cmd = { "NeovimProjectDiscover", "NeovimProjectLoad" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+		{ "Shatur/neovim-session-manager", cmd = "SessionManager" },
+	},
 	opts = {
-		projects = { -- define project roots
+		projects = {
 			"~/Projects/*",
 			"~/.config/nvim",
 			"~/Documents/ObVault",
+			"~/.config",
 		},
-		picker = {
-			type = "telescope", -- one of "telescope", "fzf-lua", or "snacks"
-		},
+		picker = { type = "telescope" },
 		last_session_on_startup = false,
 	},
-
 	init = function()
-		-- enable saving the state of plugins in the session
-		vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
-		vim.keymap.set("n", "<leader>nn", function()
+		vim.opt.sessionoptions:append("globals")
+
+		-- 🔑 Keymaps (don’t force plugin load until actually used)
+		local map = function(lhs, rhs, desc)
+			vim.keymap.set("n", lhs, rhs, { desc = desc })
+		end
+
+		map("<leader>nn", function()
 			vim.cmd("NeovimProjectLoad ~/.config/nvim")
-		end, { desc = "Open nvim config" })
+		end, "Open nvim config")
 
-		vim.keymap.set("n", "<leader>no", function()
+		map("<leader>no", function()
 			vim.cmd("NeovimProjectLoad ~/Documents/ObVault")
+		end, "Open Obsidian vault")
+
+		map("<leader>np", "<cmd>NeovimProjectDiscover<CR>", "Pick Project")
+
+		map("<leader>nh", function()
+			vim.cmd("NeovimProjectLoad ~/")
+			vim.cmd("Alpha")
+		end, "Go Home")
+		map("<leader>nc", function()
+			vim.cmd("NeovimProjectLoad ~/.config")
 		end)
-
-		vim.keymap.set("n", "<leader>np", function()
-			vim.cmd("NeovimProjectDiscover")
-		end, { desc = "Pick Project" })
 	end,
-	dependencies = {
-		{ "nvim-lua/plenary.nvim" },
-		{ "nvim-telescope/telescope.nvim" },
-
-		{ "Shatur/neovim-session-manager", lazy = true },
-	},
-	cmd = { "NeovimProjectDiscover", "NeovimProjectLoad" },
-	lazy = true,
-	priority = 100,
 }

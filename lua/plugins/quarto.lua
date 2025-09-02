@@ -9,14 +9,22 @@ return {
 				codeRunner = {
 					enabled = true,
 					default_method = "iron",
+					never_run = { "yaml" },
 				},
-				languages = { "r,", "python", "bash", "html" },
+				lspfeatures = {
+
+					chunks = "curly",
+					languages = { "r,", "python" },
+					diagnostics = { enabled = true },
+					completion = { enabled = true },
+				},
 			})
 		end,
 	},
 	{ -- directly open ipynb files as quarto docuements
 		-- and convert back behind the scenes
 		"GCBallesteros/jupytext.nvim",
+		-- lazy = true,
 		opts = {
 			custom_language_formatting = {
 				python = {

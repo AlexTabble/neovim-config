@@ -1,6 +1,7 @@
 return {
 	{
 		"mason-org/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		opts = {
 			auto_update = false,
 			run_on_start = false,
@@ -8,12 +9,13 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"mason-org/mason.nvim",
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "j-hui/fidget.nvim", lazy = true },
 		},
 		lazy = true,
-		event = { "User" },
+		cmd = { "MasonToolsUpdate" },
 		config = function()
 			local installer = require("mason-tool-installer")
 			installer.setup({

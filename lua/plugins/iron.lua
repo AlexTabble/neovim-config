@@ -1,8 +1,12 @@
 return {
 	"Vigemus/iron.nvim",
+	lazy = true,
+	cmd = { "IronRepl" },
+	keys = { "<localleader>tr" },
 	config = function()
 		local iron = require("iron.core")
 		local view = require("iron.view")
+		local common = require("iron.fts.common")
 
 		iron.setup({
 			config = {
@@ -12,15 +16,26 @@ return {
 						command = { "ipython", "--no-autoindent" },
 					},
 					r = {
-						command = { "radian" },
+						command = { "R" },
 					},
 					quarto = {
 						command = { "ipython", "--no-autoindent" },
+						-- command = { "R" },
 						block_dividers = {
 							"```{python}",
 							"```{r}",
 							"```",
 						},
+						format = common.bracketed_paste,
+					},
+					markdown = {
+						command = { "ipython", "--no-autoindent" },
+						block_dividers = {
+							"```python",
+							"```r",
+							"```",
+						},
+						send_code_block = common.markdown,
 					},
 				},
 				repl_open_cmd = view.split.vertical.botright("40%"),
@@ -36,7 +51,7 @@ return {
 				send_paragraph = "<leader>tp",
 				send_until_cursor = "<leader>tu",
 				-- send_mark = "<leader>tm",
-				send_code_block = "<leader>tb",
+				-- send_code_block = "<leader>tb",
 				-- send_code_block_and_move = "<leader>tn",
 				-- mark_motion = "<leader>tmc",
 				-- mark_visual = "<leader>tmc",

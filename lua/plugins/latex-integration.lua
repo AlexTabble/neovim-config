@@ -1,15 +1,15 @@
 return {
-	{
-		"vim-latex/vim-latex",
-		ft = { "markdown" },
-		lazy = true,
-		init = function()
-			vim.g.tex_flavor = "latex"
-			vim.g.imap_leader = ";"
-			vim.g.tex_indent_items = 0
-			vim.g.latex_suite_menu = 0
-		end,
-	},
+	-- {
+	-- 	"vim-latex/vim-latex",
+	-- 	ft = { "markdown" },
+	-- 	lazy = true,
+	-- 	init = function()
+	-- 		vim.g.tex_flavor = "latex"
+	-- 		vim.g.imap_leader = ";"
+	-- 		vim.g.tex_indent_items = 0
+	-- 		vim.g.latex_suite_menu = 0
+	-- 	end,
+	-- },
 
 	{
 		"jbyuki/nabla.nvim",

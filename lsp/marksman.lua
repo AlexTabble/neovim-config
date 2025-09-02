@@ -10,9 +10,11 @@
 
 local bin_name = "marksman"
 local cmd = { bin_name, "server" }
+local otter = require("otter")
 
 return {
 	cmd = cmd,
-	filetypes = { "markdown", "quarto" },
+	otter.activate(),
+	filetypes = { "markdown" },
 	root_markers = { ".marksman.toml", "_quarto.yml", ".git", ".md" },
 }

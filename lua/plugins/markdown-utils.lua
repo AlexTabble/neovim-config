@@ -2,6 +2,7 @@ return {
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		name = "render-markdown",
+		lazy = true,
 		ft = "markdown",
 		opts = {
 			headings = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " }, -- Nerd Font icons
