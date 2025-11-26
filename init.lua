@@ -1,21 +1,14 @@
--- Super Important Keymaps --
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+require 'config.global'
+require 'config.lazy'
+require 'config.autocommands'
 
-vim.g.have_nerd_font = true
+vim.cmd.colorscheme 'tokyonight-night'
 
-require("settings")
+-- transparent background if needed
+vim.cmd([[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]])
 
-require("lsp")
-
-require("lazy-bootsrap")
-
-require("lazy-plugins")
-
-require("keymaps")
-
--- vim.cmd.colorscheme("onedark")
-vim.cmd.colorscheme("tokyonight-night")
--- vim.cmd.colorscheme("kanagawa-wave")
--- vim.cmd.colorscheme("evergarden")
--- vim.cmd.colorscheme("nightblossom-pastel")
