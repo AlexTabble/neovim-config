@@ -1,16 +1,4 @@
 {
-  "ipython_interactive": {
-    "prefix": ["ipyinteractive"],
-    "body": [
-      "```{python}",
-      "from IPython.core.getipython import get_ipython",
-      "ip = get_ipython()",
-      "interactive = False",
-      "if ip is not None and 'interactiveshell.TerminalInteractiveShell' in str(ip):",
-      "  interactive = True",
-      "```"
-    ]
-  },
   "<style": {
     "prefix": ["<style"],
     "body": [
@@ -310,10 +298,6 @@
     "prefix": ["alert"],
     "body": ["[$0]{.alert}"]
   },
-  "importmarkdown": {
-    "prefix": ["importmd"],
-    "body": ["from IPython.display import display, Markdown"]
-  },
   "pymarkdown": {
     "prefix": ["pymd"],
     "body": ["display(Markdown(\"\"\"", "{$1}", "\"\"\".format($1 = $1)))", ""]
@@ -322,11 +306,6 @@
     "body": "bibliography: references.bib",
     "description": "add bibliography yaml",
     "prefix": "bib"
-  },
-  "diary header": {
-    "body": ["---", "title: \"$1\"", "date: \"$2\"", "categories: [$3]", "---"],
-    "description": "Add minimal yaml header",
-    "prefix": "diary"
   },
   "yaml header": {
     "body": ["---", "title: $1", "format: $2", "---"],
