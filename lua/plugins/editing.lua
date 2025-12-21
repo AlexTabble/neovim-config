@@ -96,7 +96,6 @@ return {
   {
     "hat0uma/csvview.nvim",
     ft = { "csv", "tsv" },
-    lazy = true,
     config = function()
       require("csvview").setup({})
       vim.keymap.set("n", "<localleader>cv", "<cmd>CsvViewToggle <cr>", { desc = "Toggle [c]sv [v]iewer" })
@@ -159,14 +158,6 @@ return {
     event = { "BufReadPre" },
     lazy = true,
     opts = {
-      -- char = "|",
-      -- char = "",
-      -- char = "┇",
-      -- char = "∶",
-      -- char = "∷",
-      -- char = "║",
-      -- char = "⋮",
-      -- char = "",
       char = "󰮾",
       virtcolumn = "80",
     },
