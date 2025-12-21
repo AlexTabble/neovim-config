@@ -10,11 +10,11 @@ return {
     'saghen/blink.cmp',
     enabled = true,
     dev = false,
-    -- version = '*',
+    version = '1.*',
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     build = 'cargo build --release',
     lazy = true,
-    event = {'BufEnter'},
+    event = { 'BufEnter' },
     dependencies = {
       -- { 'rafamadriz/friendly-snippets' },
       -- { 'moyiz/blink-emoji.nvim' },
@@ -40,19 +40,14 @@ return {
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+
         -- default = { 'lazydev', 'lsp', 'path', 'references', 'git', 'snippets', 'emoji', 'latex' },
-        -- providers = {
-        --   git = {
-        --     module = 'blink-cmp-git',
-        --     name = 'Git',
-        --     opts = {},
-        --     enabled = function()
-        --       return vim.tbl_contains({ 'octo', 'gitcommit', 'git' }, vim.bo.filetype)
-        --     end,
-        --   },
-        --   symbols = { name = 'symbols', module = 'blink.compat.source' },
-        --
-        -- },
+        providers = {},
+        lazydev = {
+          name = 'LazyDev',
+          modules = 'lazydev.modules.integrations.blink',
+          score_offset = 100,
+        },
       },
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups

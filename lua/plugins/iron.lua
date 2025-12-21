@@ -9,6 +9,14 @@ return {
       local view = require 'iron.view'
       local common = require 'iron.fts.common'
 
+      local bracketed_paste_quarto = function(lines, extras)
+        lines = common.bracketed_paste_python(lines, extras)
+        if lines[1] and lines[1]:match '^```%b{}' then
+          table.remove(lines, 1)
+        end
+        return lines
+      end
+
       iron.setup {
         config = {
           scratch_repl = true,
@@ -22,13 +30,13 @@ return {
             },
             quarto = {
               command = { 'ipython', '--no-autoindent' },
-              -- command = {'R'},
+              -- command = { 'R' },
               block_dividers = {
                 '```{python}',
                 '```{r}',
                 '```',
               },
-              format = common.bracketed_paste,
+              format = bracketed_paste_quarto,
             },
             markdown = {
               command = { 'ipython', '--no-autoindent' },
@@ -55,54 +63,13 @@ return {
           interrupt = '<leader>t<space>',
           exit = '<leader>tq',
           clear = '<leader>tcl',
+          send_code_block = '<leader>tb',
         },
         highlight = {
           italic = true,
         },
         ignore_blank_lines = true,
       }
-    end,
-  },
-
-  {
-    'GCBallesteros/NotebookNavigator.nvim',
-    lazy = true,
-    ft = { 'quarto' },
-    dependencies = {
-      'Vigemus/iron.nvim',
-      'anuvyklack/hydra.nvim',
-    },
-    config = function()
-      require('notebook-navigator').setup {
-        cell_markers = {
-          quarto = '```',
-          markdown = '```',
-        },
-      }
-    end,
-  },
-
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    event = 'VeryLazy',
-    config = function()
-      require('toggleterm').setup {
-        direction = 'float',
-        float_opts = {
-          border = 'curved',
-        },
-      }
-
-      vim.keymap.set('n', '<leader>tt', function()
-        require('toggleterm.terminal').Terminal
-          :new({
-            cmd = os.getenv 'SHELL',
-            hidden = true,
-            direction = 'float',
-          })
-          :toggle()
-      end, { desc = 'Open Terminal' })
     end,
   },
 }

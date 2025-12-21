@@ -16,7 +16,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     lazy = true,
-    event = {'VimEnter'},
+    event = { 'VimEnter' },
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
       {
@@ -32,6 +32,9 @@ return {
             'yamlls',
             'clangd',
             -- 'marksman',
+            'sqlls',
+            'html',
+            'emmet_language_server'
           },
         },
       },
@@ -103,7 +106,7 @@ return {
       -- }
 
       vim.lsp.config.r_language_server = {
-        filetypes = { 'r', 'qmd', 'rmarkdown' }, -- not directly using it for quarto (as that is handled by otter and often contains more languanges than just R)
+        filetypes = { 'r','rmarkdown' }, -- not directly using it for quarto (as that is handled by otter and often contains more languanges than just R)
         settings = {
           r = {
             lsp = {
@@ -149,30 +152,50 @@ return {
         },
       }
 
+      vim.lsp.sqlls = {
+        capabilities = capabilities,
+        -- filetypes = {"sql"},
+      }
+
+      vim.emmet_language_server= {
+        capabilities = capabilities,
+        filetypes = {"html"},
+      }
+
       vim.lsp.bashls = {
         filetypes = { 'sh', 'bash' },
       }
 
       vim.lsp.config.ty = {
         capabilities = capabilities,
+        filetypes = { 'python', 'qmd' },
       }
 
-      vim.lsp.ruff= {
+      vim.lsp.ruff = {
         capabilities = capabilities,
+        filetypes = { 'python' },
       }
 
       vim.lsp.pyrefly = {
-        capabilities = capabilities
+        capabilities = capabilities,
+        filetypes = { 'python', 'quarto' },
       }
 
       -- enable the servers
-      vim.lsp.enable 'r_language_server'
-      vim.lsp.enable 'jsonls'
       vim.lsp.enable 'yamlls'
       vim.lsp.enable 'lua_ls'
-      vim.lsp.enable 'ty'
-      vim.lsp.enable 'ruff'
-      -- vim.lsp.enable 'pyrefly'
+
+      vim.lsp.enable 'r_language_server'
+
+      -- vim.lsp.enable 'ty'
+      vim.lsp.enable 'pyrefly'
+      --
+      -- vim.lsp.enable 'ruff'
+      -- vim.lsp.enable 'sqlls'
+
+      
+      -- vim.lsp.enable "html"
+      -- vim.lsp.enable 'emmet_language_server'
     end,
   },
 }

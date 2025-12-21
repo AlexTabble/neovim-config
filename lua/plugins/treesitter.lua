@@ -3,7 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dev = false,
     lazy = true,
-    event = {'BufReadPost'},
+    event = { 'BufReadPost' },
     dependencies = {
       {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -61,6 +61,8 @@ return {
               ['if'] = '@function.inner',
               ['ac'] = '@class.outer',
               ['ic'] = '@class.inner',
+              ['ib'] = '@block.inner',
+              ['ab'] = '@block.outer',
             },
           },
           move = {
@@ -85,6 +87,7 @@ return {
           },
         },
       }
+      vim.treesitter.language.register('markdown', 'quarto')
     end,
   },
 }
