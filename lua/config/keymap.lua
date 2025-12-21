@@ -2,6 +2,7 @@
 local wk = require 'which-key'
 local ms = vim.lsp.protocol.Methods
 
+
 local nmap = function(key, effect, desc)
   vim.keymap.set('n', key, effect, { silent = true, noremap = true, desc = desc })
 end
@@ -32,7 +33,7 @@ nmap('<C-s>', '<cmd>:update<cr><esc>')
 nmap('<leader>x', '<cmd>:q<cr>')
 
 nmap('|', '<CMD>vsplit<CR>')
-nmap('-', '<CMD>split<CR>') -- I basically never use this keymap
+nmap('_', '<CMD>split<CR>') -- I basically never use this keymap
 -- Move between windows using <ctrl> direction
 nmap('<C-j>', '<C-W>j')
 nmap('<C-k>', '<C-W>k')
@@ -55,12 +56,19 @@ nmap('<c-d>', '<c-d>zz')
 nmap('<c-u>', '<c-u>zz')
 
 -- move between splits and tabs
-nmap('<c-h>', '<c-w>h')
-nmap('<c-l>', '<c-w>l')
-nmap('<c-j>', '<c-w>j')
-nmap('<c-k>', '<c-w>k')
-nmap('H', '<cmd>tabprevious<cr>')
-nmap('L', '<cmd>tabnext<cr>')
+-- move between splits and tabs
+local function smart_move(direction, tmux_cmd)
+  local curwin = vim.api.nvim_get_current_win()
+  vim.cmd('wincmd ' .. direction)
+  if curwin == vim.api.nvim_get_current_win() then
+    vim.fn.system('tmux select-pane ' .. tmux_cmd)
+  end
+end
+
+vim.keymap.set('n', '<C-h>', function() smart_move('h', '-L') end, { silent = true })
+vim.keymap.set('n', '<C-j>', function() smart_move('j', '-D') end, { silent = true })
+vim.keymap.set('n', '<C-k>', function() smart_move('k', '-U') end, { silent = true })
+vim.keymap.set('n', '<C-l>', function() smart_move('l', '-R') end, { silent = true})
 
 
 -- normal mode
@@ -97,15 +105,14 @@ wk.add({
   {
     {"<leader>a", function() harpoon:list():add() end, desc='Add Mark'},
     {"<c-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc='Search Marks'},
-    {"<M-j>", function() harpoon:list():select(1) end, desc='M1'},
-    {"<M-k>", function() harpoon:list():select(2) end, desc='M2'},
-    {"<M-l>", function() harpoon:list():select(3) end, desc='M3'},
-    {"<M-;>", function() harpoon:list():select(4) end, desc='M3'},
+    {"<leader>s", function() harpoon:list():select(1) end, desc='M1'},
+    {"<leader>d", function() harpoon:list():select(2) end, desc='M2'},
+    {"<leader>S", function() harpoon:list():select(3) end, desc='M3'},
+    {"<leader>D", function() harpoon:list():select(4) end, desc='M3'},
     { '<leader>e', group = '[e]dit' },
     { '<leader>f', group = '[f]ind (telescope)' },
     { '<leader>f<space>', '<cmd>Telescope buffers<cr>', desc = '[ ] buffers' },
     { '<leader>t', group='[R]epl'},
-		{ "<leader>tb", "<cmd>lua require('notebook-navigator').run_cell()<cr>" , desc = 'Run cell'},
     { '<leader>fM', '<cmd>Telescope man_pages<cr>', desc = '[M]an pages' },
     { '<leader>fb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[b]uffer fuzzy find' },
     { '<leader>fc', '<cmd>Telescope git_commits<cr>', desc = 'git [c]ommits' },
@@ -155,9 +162,5 @@ wk.add({
     { '<leader>od', require('otter').activate, desc = 'otter [d]eactivate' },
     { '<leader>ob', ':ObsidianBacklinks<cr>', desc = 'obsidian [b]acklinks'},
 
-    {'<leader>p', group='[P]review'},
-    { '<leader>pq', ":lua require'quarto'.quartoPreview()<cr>", desc = '[p]review' },
-    { '<leader>pu', ":lua require'quarto'.quartoUpdatePreview()<cr>", desc = '[u]pdate preview' },
-    { '<leader>pc', ":lua require'quarto'.quartoClosePreview()<cr>", desc = '[q]uiet preview' },
   },
 }, { mode = 'n' })
