@@ -22,7 +22,8 @@ return {
           scratch_repl = true,
           repl_definition = {
             python = {
-              command = { 'ipython', '--no-autoindent' },
+              -- command = { 'ipython', '--no-autoindent' },
+              command = {"uv", "run", "ipython", "--no-autoindent"},
               format = common.bracketed_paste_python,
             },
             r = {

@@ -1,7 +1,5 @@
--- required in which-key plugin spec in plugins/ui.lua as `require 'config.keymap'`
 local wk = require 'which-key'
-local ms = vim.lsp.protocol.Methods
-
+local handlers = require 'misc.handlers'
 
 local nmap = function(key, effect, desc)
   vim.keymap.set('n', key, effect, { silent = true, noremap = true, desc = desc })
@@ -22,6 +20,9 @@ end
 -- select last paste
 nmap('gV', '`[v`]')
 
+-- go back on link : obsidian
+nmap('gb', ':Obsidian backlinks<cr>')
+
 -- move in command line
 cmap('<C-a>', '<Home>')
 
@@ -34,6 +35,7 @@ nmap('<leader>x', '<cmd>:q<cr>')
 
 nmap('|', '<CMD>vsplit<CR>')
 nmap('_', '<CMD>split<CR>') -- I basically never use this keymap
+
 -- Move between windows using <ctrl> direction
 nmap('<C-j>', '<C-W>j')
 nmap('<C-k>', '<C-W>k')
@@ -65,11 +67,18 @@ local function smart_move(direction, tmux_cmd)
   end
 end
 
-vim.keymap.set('n', '<C-h>', function() smart_move('h', '-L') end, { silent = true })
-vim.keymap.set('n', '<C-j>', function() smart_move('j', '-D') end, { silent = true })
-vim.keymap.set('n', '<C-k>', function() smart_move('k', '-U') end, { silent = true })
-vim.keymap.set('n', '<C-l>', function() smart_move('l', '-R') end, { silent = true})
-
+vim.keymap.set('n', '<C-h>', function()
+  smart_move('h', '-L')
+end, { silent = true })
+vim.keymap.set('n', '<C-j>', function()
+  smart_move('j', '-D')
+end, { silent = true })
+vim.keymap.set('n', '<C-k>', function()
+  smart_move('k', '-U')
+end, { silent = true })
+vim.keymap.set('n', '<C-l>', function()
+  smart_move('l', '-R')
+end, { silent = true })
 
 -- normal mode
 wk.add({
@@ -98,21 +107,57 @@ wk.add {
 }
 
 --harpoon
-harpoon = require('harpoon')
+harpoon = require 'harpoon'
 harpoon:setup()
 
 wk.add({
   {
-    {"<leader>a", function() harpoon:list():add() end, desc='Add Mark'},
-    {"<c-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc='Search Marks'},
-    {"<leader>s", function() harpoon:list():select(1) end, desc='M1'},
-    {"<leader>d", function() harpoon:list():select(2) end, desc='M2'},
-    {"<leader>S", function() harpoon:list():select(3) end, desc='M3'},
-    {"<leader>D", function() harpoon:list():select(4) end, desc='M3'},
+    {
+      '<leader>a',
+      function()
+        harpoon:list():add()
+      end,
+      desc = 'Add Mark',
+    },
+    {
+      '<c-e>',
+      function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end,
+      desc = 'Search Marks',
+    },
+    {
+      '<leader>s',
+      function()
+        harpoon:list():select(1)
+      end,
+      desc = 'M1',
+    },
+    {
+      '<leader>d',
+      function()
+        harpoon:list():select(2)
+      end,
+      desc = 'M2',
+    },
+    {
+      '<leader>S',
+      function()
+        harpoon:list():select(3)
+      end,
+      desc = 'M3',
+    },
+    {
+      '<leader>D',
+      function()
+        harpoon:list():select(4)
+      end,
+      desc = 'M3',
+    },
     { '<leader>e', group = '[e]dit' },
     { '<leader>f', group = '[f]ind (telescope)' },
     { '<leader>f<space>', '<cmd>Telescope buffers<cr>', desc = '[ ] buffers' },
-    { '<leader>t', group='[R]epl'},
+    { '<leader>t', group = '[R]epl' },
     { '<leader>fM', '<cmd>Telescope man_pages<cr>', desc = '[M]an pages' },
     { '<leader>fb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[b]uffer fuzzy find' },
     { '<leader>fc', '<cmd>Telescope git_commits<cr>', desc = 'git [c]ommits' },
@@ -156,11 +201,26 @@ wk.add({
     },
     { '<leader>lde', vim.diagnostic.enable, desc = '[e]nable' },
     { '<leader>le', vim.diagnostic.open_float, desc = 'diagnostics (show hover [e]rror)' },
+    { '<leader>lrr', vim.lsp.buf.rename, desc = 'rename' },
     { '<leader>o', group = '[o]tter & c[o]de' },
     { '<leader>oa', require('otter').activate, desc = 'otter [a]ctivate' },
     { '<leader>oc', 'O# %%<cr>', desc = 'magic [c]omment code chunk # %%' },
     { '<leader>od', require('otter').activate, desc = 'otter [d]eactivate' },
-    { '<leader>ob', ':ObsidianBacklinks<cr>', desc = 'obsidian [b]acklinks'},
-
+    { '<leader>ob', ':Obsidian backlinks<cr>', desc = 'obsidian [b]acklinks' },
+    {
+      '<leader>oh',
+      function()
+        vim.cmd.edit(vim.fn.fnameescape(vim.fn.getcwd() .. '/Nvim_Navigation.md'))
+      end,
+      desc = 'Go Home',
+    },
+    {
+      '<leader>ol',
+      function()
+        handlers.search_and_link()
+      end,
+      desc = 'Grep for link',
+    },
+    { '<leader>z', group = '[z]otero' },
   },
 }, { mode = 'n' })

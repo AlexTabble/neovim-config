@@ -29,24 +29,63 @@ return {
         dev = false,
         ft = { 'quarto', 'markdown', 'rmarkdown' },
       },
+
       -- { 'kdheepak/cmp-latex-symbols' },
-      -- { 'erooke/blink-cmp-latex' },
+      { 'erooke/blink-cmp-latex' },
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
       cmdline = {
         enabled = false,
+        -- impersonate_nvim_cmp = true,
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'latex'},
+        per_filetype = {
+
+          tex = { 'lsp', 'snippets',  'path', 'buffer','latex' },
+          markdown = {'lsp','snippets','path','buffer','obsidian'}
+        },
 
         -- default = { 'lazydev', 'lsp', 'path', 'references', 'git', 'snippets', 'emoji', 'latex' },
-        providers = {},
+        providers = {
+          -- symbols = { name = 'symbols', module = 'blink.compat.source' },
+          latex = {
+            name = 'Latex',
+            module = 'blink-cmp-latex',
+            opts = {
+              insert_command = function(ctx)
+                local ft = vim.api.nvim_get_option_value('filetype', {
+                  scope = 'local',
+                  buf = ctx.bufnr,
+                })
+                if ft == 'markdown' or ft == 'quarto'  or ft == 'tex' then
+                  return true
+                end
+                return false
+              end,
+            },
+          },
+        },
+        -- obsidian = {
+        --   name = "obsidian",
+        --   module = "blink.compat.source",
+        --
+        --   opts = {
+        --     cmp_name = "obsidian", -- this is the cmp source name
+        --   },
+        -- },
+          
         lazydev = {
           name = 'LazyDev',
           modules = 'lazydev.modules.integrations.blink',
           score_offset = 100,
+        },
+        references = {
+          name = 'pandoc_references',
+          module = 'cmp-pandoc-references.blink',
+          score_offset = 2,
         },
       },
       appearance = {

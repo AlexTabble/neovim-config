@@ -22,6 +22,8 @@ vim.o.clipboard = "unnamedplus"
 -- vim.o.clipboard = ""
 
 
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.opt.timeoutlen = 400 -- until which-key pops up
 vim.opt.updatetime = 250 -- for autocommands and hovers
 

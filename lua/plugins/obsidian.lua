@@ -1,30 +1,65 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
-  lazy = true,
-  ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre path/to/my-vault/*.md",
-  --   "BufNewFile path/to/my-vault/*.md",
-  -- },
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
+  'obsidian-nvim/obsidian.nvim',
+  version = '*',
+  ft = 'markdown',
 
-    -- see below for full list of optional dependencies 👇
+  dependencies = {
+    'nvim-lua/plenary.nvim', -- required
+    'saghen/blink.cmp',
+    'nvim-telescope/telescope.nvim',
   },
+
   opts = {
     workspaces = {
       {
-        name = "personal",
-        path = "~/Documents/ObVault",
+        name = 'personal',
+        path = '~/Documents/ObVault',
       },
     },
+    legacy_commands = false,
 
-    -- see below for full list of options 👇
+    new_notes_subdir = 'Fleeting Notes',
+
+    -- [[My Note]] → 'My Note.md'
+    note_id_func = function(title)
+      if title ~= nil then
+        return title
+      else
+        return tostring(os.time())
+      end
+    end,
+
+    attachments = {
+      img_folder = 'Assets',
+    },
+
+    ui = {
+      enable = false,
+    },
+
+
+    completion = {
+      blink = true,
+      nvim_cmp=false,
+      min_chars = 1,
+    },
+
+    picker = {
+      name = 'telescope',
+    },
+
+    
+
+    note_frontmatter_func = function(note)
+      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+      if note.metadata ~= nil then
+        for k, v in pairs(note.metadata) do
+          out[k] = v
+        end
+      end
+
+      return out
+    end,
   },
 }
