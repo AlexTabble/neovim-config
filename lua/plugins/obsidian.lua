@@ -1,7 +1,8 @@
 return {
   'obsidian-nvim/obsidian.nvim',
   version = '*',
-  ft = 'markdown',
+  ft = {'markdown'},
+  lazy=true,
 
   dependencies = {
     'nvim-lua/plenary.nvim', -- required
@@ -30,7 +31,7 @@ return {
     end,
 
     attachments = {
-      img_folder = 'Assets',
+      folder = 'Assets',
     },
 
     ui = {
@@ -50,7 +51,9 @@ return {
 
     
 
-    note_frontmatter_func = function(note)
+    
+    frontmatter = {
+      func = function(note)
       local out = { id = note.id, aliases = note.aliases, tags = note.tags }
 
       if note.metadata ~= nil then
@@ -61,5 +64,6 @@ return {
 
       return out
     end,
+    },
   },
 }

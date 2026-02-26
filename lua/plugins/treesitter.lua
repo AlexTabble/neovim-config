@@ -87,7 +87,7 @@ return {
           },
         },
       }
-      vim.treesitter.language.register('markdown', 'quarto')
+      -- vim.treesitter.language.register('markdown', 'quarto')
     end,
   },
 }

@@ -47,5 +47,5 @@
     "body": "\\begin{aligned}\n\t$0\n\\end{aligned}",
     "description": "Align",
     "prefix": "eqalign"
-  },
+  }
 }

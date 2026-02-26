@@ -1,17 +1,29 @@
 return {
   {
     'jmbuhr/otter.nvim',
-    dev = false,
-    lazy = true,
     ft = { 'quarto' },
-    dependencies = {
-
-      'neovim/nvim-lspconfig',
-      'nvim-treesitter/nvim-treesitter',
-      'barreiroleo/ltex_extra.nvim',
+    opts = {
+      lsp = {
+        hover = { border = 'rounded' },
+      },
+      buffers = {
+        set_filetype = true,
+      },
     },
-    ---@type OtterConfig
-    opts = {},
+    config = function(_, opts)
+      require('otter').setup(opts)
+
+      -- THIS is what actually enables chunk LSPs
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'quarto',
+        callback = function()
+          require('otter').activate {
+            'python',
+            'r',
+          }
+        end,
+      })
+    end,
   },
 
   {
@@ -75,6 +87,7 @@ return {
 
           map('gd', vim.lsp.buf.definition, '[g]o to [d]efinition')
           map('gD', vim.lsp.buf.type_definition, '[g]o to type [D]efinition')
+          map('K', vim.lsp.buf.hover, 'Hover')
           map('<leader>lq', vim.diagnostic.setqflist, '[l]sp diagnostic [q]uickfix')
         end,
       })
@@ -125,7 +138,7 @@ return {
             language = 'en-ZA',
           },
         },
-        filetypes = { 'markdown', 'text', 'tex', 'gitcommit', 'quarto' },
+        filetypes = { 'markdown', 'text', 'tex', 'gitcommit' },
         flags = { debounce_text_changes = 300 },
       }
 
@@ -212,7 +225,7 @@ return {
 
       vim.lsp.config.ty = {
         capabilities = capabilities,
-        filetypes = { 'python', 'qmd' },
+        filetypes = { 'python' },
       }
 
       vim.lsp.ruff = {
@@ -245,16 +258,16 @@ return {
         root_markers = { '.git', 'setup.py', 'setup.cfg', 'pyproject.toml', 'requirements.txt' },
       }
       -- enable the servers
-      vim.lsp.enable 'yamlls'
+      -- vim.lsp.enable 'yamlls'
       vim.lsp.enable 'lua_ls'
 
       vim.lsp.enable 'r_language_server'
 
       -- vim.lsp.enable 'ty'
       vim.lsp.enable 'pyrefly'
-      vim.lsp.enable 'pyright'
+      -- vim.lsp.enable 'ruff'
+      -- vim.lsp.enable 'pyright'
 
-      vim.lsp.enable 'ruff'
       -- vim.lsp.enable 'sqlls'
 
       -- vim.lsp.enable "html"
@@ -262,8 +275,8 @@ return {
       vim.lsp.enable 'bashls'
 
       vim.lsp.enable 'texlab'
-      vim.lsp.enable 'ltex'
-      vim.lsp.enable 'marksman'
+      -- vim.lsp.enable 'ltex'
+      -- vim.lsp.enable 'marksman'
     end,
   },
 }
