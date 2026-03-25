@@ -13,7 +13,6 @@ return {
     config = function(_, opts)
       require('otter').setup(opts)
 
-      -- THIS is what actually enables chunk LSPs
       vim.api.nvim_create_autocmd('FileType', {
         pattern = 'quarto',
         callback = function()
@@ -41,15 +40,11 @@ return {
             'bashls',
             'ty',
             'r_language_server',
-            'ts_ls',
             'yamlls',
             'clangd',
-            -- 'marksman',
             'texlab',
-            'sqlls',
-            'html',
-            'emmet_language_server',
             'ltex',
+            'rust_analyzer',
           },
         },
       },
@@ -111,15 +106,6 @@ return {
         flags = lsp_flags,
         root_markers = { '.git/' },
       })
-
-      -- also needs:
-      -- $home/.config/marksman/config.toml :
-      -- [core]
-      -- markdown.file_extensions = ["md", "markdown", "qmd"]
-      vim.lsp.config.marksman = {
-        filetypes = { 'markdown' },
-        root_dir = util.root_pattern('.git', '.marksman.toml', '_quarto.yml'),
-      }
 
       vim.lsp.config.ltex = {
         on_attach = function()
@@ -189,16 +175,6 @@ return {
         },
       }
 
-      vim.lsp.sqlls = {
-        capabilities = capabilities,
-        -- filetypes = {"sql"},
-      }
-
-      vim.emmet_language_server = {
-        capabilities = capabilities,
-        filetypes = { 'html' },
-      }
-
       vim.lsp.config.texlab = {
         capabilities = capabilities,
         filetypes = { 'tex', 'plaintex', 'bib' },
@@ -219,7 +195,7 @@ return {
         },
       }
 
-      vim.lsp.bashls = {
+      vim.lsp.config.bashls = {
         filetypes = { 'sh', 'bash' },
       }
 
@@ -228,14 +204,20 @@ return {
         filetypes = { 'python' },
       }
 
-      vim.lsp.ruff = {
+      vim.lsp.config.ruff = {
         capabilities = capabilities,
         filetypes = { 'python' },
       }
 
-      vim.lsp.pyrefly = {
+      vim.lsp.config.pyrefly = {
         capabilities = capabilities,
         filetypes = { 'python' },
+      }
+
+      vim.lsp.config.rust_analyzer = {
+        capabilities = capabilities,
+        filetypes = { 'rust' },
+        root_markers = { '.git', 'Cargo.toml' },
       }
 
       if capabilities.workspace == nil then
@@ -244,7 +226,7 @@ return {
       end
       capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
-      vim.lsp.config.pyright = {
+      vim.lsp.pyright = {
         capabilities = capabilities,
         settings = {
           python = {
@@ -258,25 +240,17 @@ return {
         root_markers = { '.git', 'setup.py', 'setup.cfg', 'pyproject.toml', 'requirements.txt' },
       }
       -- enable the servers
-      -- vim.lsp.enable 'yamlls'
       vim.lsp.enable 'lua_ls'
 
       vim.lsp.enable 'r_language_server'
 
-      -- vim.lsp.enable 'ty'
       vim.lsp.enable 'pyrefly'
+      -- vim.lsp.enable 'ty'
       -- vim.lsp.enable 'ruff'
-      -- vim.lsp.enable 'pyright'
 
-      -- vim.lsp.enable 'sqlls'
-
-      -- vim.lsp.enable "html"
-      -- vim.lsp.enable 'emmet_language_server'
       vim.lsp.enable 'bashls'
 
-      vim.lsp.enable 'texlab'
-      -- vim.lsp.enable 'ltex'
-      -- vim.lsp.enable 'marksman'
+      vim.lsp.enable 'rust_analyzer'
     end,
   },
 }

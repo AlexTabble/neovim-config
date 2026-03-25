@@ -47,6 +47,7 @@ return {
           quarto = { 'injected' },
           markdown = { 'injected' },
           r = { 'styler' },
+          rust = { 'rustfmt' },
         },
         formatters = {
           -- mystylua = {
@@ -66,19 +67,13 @@ return {
           -- because some formatters care about the filename.
           lang_to_ext = {
             bash = 'sh',
-            c_sharp = 'cs',
-            elixir = 'exs',
-            javascript = 'js',
             julia = 'jl',
             latex = 'tex',
             markdown = 'md',
             python = 'py',
-            ruby = 'rb',
-            rust = 'rs',
-            teal = 'tl',
+            rust = 'rust',
             r = 'r',
-            typescript = 'ts',
-            tex = 'latexindent'
+            tex = 'latexindent',
           },
           -- Map of treesitter language to formatters to use
           -- (defaults to the value from formatters_by_ft)
@@ -87,26 +82,26 @@ return {
       }
     end,
   },
+  -- lua with lazy.nvim
   {
-    "max397574/better-escape.nvim",
+    'max397574/better-escape.nvim',
     config = function()
-      require("better_escape").setup()
+      require('better_escape').setup()
     end,
   },
-
   {
-    "hat0uma/csvview.nvim",
-    ft = { "csv", "tsv" },
+    'hat0uma/csvview.nvim',
+    ft = { 'csv', 'tsv' },
     config = function()
-      require("csvview").setup({})
-      vim.keymap.set("n", "<localleader>cv", "<cmd>CsvViewToggle <cr>", { desc = "Toggle [c]sv [v]iewer" })
+      require('csvview').setup {}
+      vim.keymap.set('n', '<localleader>cv', '<cmd>CsvViewToggle <cr>', { desc = 'Toggle [c]sv [v]iewer' })
     end,
   },
 
   { -- Highlight todo, notes, etc in comments
-    "folke/todo-comments.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    'folke/todo-comments.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
 
     --TODO: A Todo block
@@ -115,7 +110,6 @@ return {
     --BUG: A bug block
     --PERF: A Test Block
   },
-
 
   { -- edit the file system as a buffer
     'stevearc/oil.nvim',
@@ -131,7 +125,7 @@ return {
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '-',         ':Oil<cr>', desc = 'oil' },
+      { '-', ':Oil<cr>', desc = 'oil' },
       { '<leader>e', ':Oil<cr>', desc = 'edit [f]iles' },
     },
     cmd = 'Oil',
@@ -155,12 +149,12 @@ return {
     },
   },
   {
-    "lukas-reineke/virt-column.nvim",
-    event = { "BufReadPre" },
+    'lukas-reineke/virt-column.nvim',
+    event = { 'BufReadPre' },
     lazy = true,
     opts = {
-      char = "󰮾",
-      virtcolumn = "80",
+      char = '󰮾',
+      virtcolumn = '80',
     },
   },
 }

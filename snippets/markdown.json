@@ -47,5 +47,26 @@
     "body": "\\begin{aligned}\n\t$0\n\\end{aligned}",
     "description": "Align",
     "prefix": "eqalign"
+  },
+  "mk" : {
+    "body" : "\\$$0\\$",
+    "description" : "inline-math",
+    "prefix":"mk"
+  },
+  "dm" : {
+    "body": "\\$\\$\n$0\n\\$\\$",
+    "description":"block-math",
+    "prefix": "dm"
+  },
+
+  "beg": {
+    "prefix": "beg",
+    "body": [
+      "\\begin{${1:environment}}",
+      "\t${2}",
+      "\\end{${1:environment}}"
+    ],
+    "description": "LaTeX environment block"
   }
+  
 }

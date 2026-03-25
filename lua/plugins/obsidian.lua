@@ -1,8 +1,8 @@
 return {
   'obsidian-nvim/obsidian.nvim',
   version = '*',
-  ft = {'markdown'},
-  lazy=true,
+  ft = { 'markdown' },
+  lazy = true,
 
   dependencies = {
     'nvim-lua/plenary.nvim', -- required
@@ -38,10 +38,9 @@ return {
       enable = false,
     },
 
-
     completion = {
       blink = true,
-      nvim_cmp=false,
+      nvim_cmp = false,
       min_chars = 1,
     },
 
@@ -49,21 +48,18 @@ return {
       name = 'telescope',
     },
 
-    
-
-    
     frontmatter = {
       func = function(note)
-      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
 
-      if note.metadata ~= nil then
-        for k, v in pairs(note.metadata) do
-          out[k] = v
+        if note.metadata ~= nil then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
         end
-      end
 
-      return out
-    end,
+        return out
+      end,
     },
   },
 }

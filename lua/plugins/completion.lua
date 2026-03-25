@@ -16,9 +16,6 @@ return {
     lazy = true,
     event = { 'BufEnter' },
     dependencies = {
-      -- { 'rafamadriz/friendly-snippets' },
-      -- { 'moyiz/blink-emoji.nvim' },
-      -- { 'Kaiser-Yang/blink-cmp-git' },
       {
         'saghen/blink.compat',
         dev = false,
@@ -38,7 +35,7 @@ return {
     opts = {
       cmdline = {
         enabled = false,
-        -- impersonate_nvim_cmp = true,
+        impersonate_nvim_cmp = true,
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'latex'},
@@ -48,9 +45,7 @@ return {
           markdown = {'lsp','snippets','path','buffer','obsidian'}
         },
 
-        -- default = { 'lazydev', 'lsp', 'path', 'references', 'git', 'snippets', 'emoji', 'latex' },
         providers = {
-          -- symbols = { name = 'symbols', module = 'blink.compat.source' },
           latex = {
             name = 'Latex',
             module = 'blink-cmp-latex',
@@ -60,7 +55,7 @@ return {
                   scope = 'local',
                   buf = ctx.bufnr,
                 })
-                if ft == 'markdown' or ft == 'quarto'  or ft == 'tex' then
+                if ft == 'tex' then
                   return true
                 end
                 return false
@@ -68,15 +63,6 @@ return {
             },
           },
         },
-        -- obsidian = {
-        --   name = "obsidian",
-        --   module = "blink.compat.source",
-        --
-        --   opts = {
-        --     cmp_name = "obsidian", -- this is the cmp source name
-        --   },
-        -- },
-          
         lazydev = {
           name = 'LazyDev',
           modules = 'lazydev.modules.integrations.blink',
