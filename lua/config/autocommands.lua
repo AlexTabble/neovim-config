@@ -16,3 +16,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "quarto"},
+  group = vim.api.nvim_create_augroup("Otter", {}),
+  callback = function()
+    local ok, otter = pcall(require, "otter")
+    if ok then
+      otter.activate()
+    end
+  end,
+})

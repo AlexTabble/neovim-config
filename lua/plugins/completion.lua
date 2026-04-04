@@ -6,15 +6,16 @@ return {
     end,
   },
 
-  { -- new completion plugin
+  {
     'saghen/blink.cmp',
     enabled = true,
     dev = false,
     version = '1.*',
-    -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     build = 'cargo build --release',
+
     lazy = true,
     event = { 'BufEnter' },
+
     dependencies = {
       {
         'saghen/blink.compat',
@@ -25,24 +26,28 @@ return {
         'jmbuhr/cmp-pandoc-references',
         dev = false,
         ft = { 'quarto', 'markdown', 'rmarkdown' },
+        event = 'InsertEnter',
       },
-
-      -- { 'kdheepak/cmp-latex-symbols' },
-      { 'erooke/blink-cmp-latex' },
+      {
+        'erooke/blink-cmp-latex',
+        ft = { 'tex' },
+        event = 'InsertEnter',
+      },
     },
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
+
     opts = {
       cmdline = {
         enabled = false,
         impersonate_nvim_cmp = true,
       },
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'latex'},
-        per_filetype = {
 
-          tex = { 'lsp', 'snippets',  'path', 'buffer','latex' },
-          markdown = {'lsp','snippets','path','buffer','obsidian'}
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+
+        per_filetype = {
+          tex = { 'lsp', 'snippets', 'path', 'buffer', 'latex' },
+          markdown = { 'lsp', 'snippets', 'path', 'buffer', 'obsidian' },
+          quarto = { 'lsp', 'snippets', 'path', 'buffer','latex' },
         },
 
         providers = {
@@ -51,38 +56,24 @@ return {
             module = 'blink-cmp-latex',
             opts = {
               insert_command = function(ctx)
-                local ft = vim.api.nvim_get_option_value('filetype', {
-                  scope = 'local',
-                  buf = ctx.bufnr,
-                })
-                if ft == 'tex' then
-                  return true
-                end
-                return false
+                local ft = vim.bo[ctx.bufnr].filetype
+                return ft == 'tex'
               end,
             },
           },
-        },
-        lazydev = {
-          name = 'LazyDev',
-          modules = 'lazydev.modules.integrations.blink',
-          score_offset = 100,
-        },
-        references = {
-          name = 'pandoc_references',
-          module = 'cmp-pandoc-references.blink',
-          score_offset = 2,
+
+          references = {
+            name = 'pandoc_references',
+            module = 'cmp-pandoc-references.blink',
+            score_offset = 2,
+          },
         },
       },
+
       appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- Will be removed in a future release
         use_nvim_cmp_as_default = true,
-        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
-        -- nerd_font_variant = 'mono',
       },
+
       completion = {
         documentation = {
           auto_show = true,
@@ -93,6 +84,7 @@ return {
           auto_show = true,
         },
       },
+
       signature = { enabled = true },
     },
   },

@@ -143,7 +143,6 @@ return {
     submodules = false, -- not needed, submodules are required only for tests
     opts = {
       handler_options = {
-        -- you can select between google, bing, duckduckgo, and ecosia
         search_engine = 'duckduckgo',
       },
     },

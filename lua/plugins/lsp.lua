@@ -1,31 +1,5 @@
 return {
   {
-    'jmbuhr/otter.nvim',
-    ft = { 'quarto' },
-    opts = {
-      lsp = {
-        hover = { border = 'rounded' },
-      },
-      buffers = {
-        set_filetype = true,
-      },
-    },
-    config = function(_, opts)
-      require('otter').setup(opts)
-
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = 'quarto',
-        callback = function()
-          require('otter').activate {
-            'python',
-            'r',
-          }
-        end,
-      })
-    end,
-  },
-
-  {
     'neovim/nvim-lspconfig',
     lazy = true,
     event = { 'VimEnter' },
@@ -239,13 +213,13 @@ return {
         },
         root_markers = { '.git', 'setup.py', 'setup.cfg', 'pyproject.toml', 'requirements.txt' },
       }
-      -- enable the servers
       vim.lsp.enable 'lua_ls'
 
       vim.lsp.enable 'r_language_server'
 
-      vim.lsp.enable 'pyrefly'
-      -- vim.lsp.enable 'ty'
+      -- vim.lsp.enable 'pyrefly'
+      vim.lsp.enable 'pyright'
+      vim.lsp.enable 'ty'
       -- vim.lsp.enable 'ruff'
 
       vim.lsp.enable 'bashls'

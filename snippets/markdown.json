@@ -67,6 +67,17 @@
       "\\end{${1:environment}}"
     ],
     "description": "LaTeX environment block"
+  },
+  "bold" : {
+    "prefix" : "bf",
+    "body": "**$0**",
+    "description": "Bold Font"
+  },
+  
+  "italic" : {
+    "prefix" : "it",
+    "body": "*$0*",
+    "description": "Italic Font"
   }
   
 }

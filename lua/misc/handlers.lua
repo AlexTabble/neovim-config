@@ -21,7 +21,7 @@ local function insert_link(prompt_bufnr)
     return
   end
 
-  local note = vim.fn.fnamemodify(file, ':t:r') -- filename without extension
+  local note = vim.fn.fnamemodify(file, ':t:r') 
   local link = string.format('[[%s]]', note)
 
   vim.api.nvim_put({ link }, 'c', true, true)
@@ -32,17 +32,16 @@ function M.search_and_link()
     cwd = vault,
     prompt_title = 'Vault Grep → Insert Link',
 
-    -- only search markdown files (huge speedup)
     additional_args = function()
       return {
         '--glob',
-        '*.md', -- only markdown
+        '*.md', 
         '--glob',
-        '!Excalidraw/**', -- exclude Excalidraw folder
+        '!Excalidraw/**', 
         '--glob',
-        '!Assets/**', -- exclude attachments
+        '!Assets/**', 
         '--glob',
-        '!.obsidian/**', -- exclude config
+        '!.obsidian/**', 
       }
     end,
 
