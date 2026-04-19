@@ -10,11 +10,11 @@ return {
       local common = require 'iron.fts.common'
 
       local bracketed_paste_quarto = function(lines, extras)
-        lines = common.bracketed_paste_python(lines, extras)
-        if lines[1] and lines[1]:match '^```%b{}' then
+        if lines[1] and lines[1]:match '^```' then
           table.remove(lines, 1)
         end
-        return lines
+
+        return common.bracketed_paste_python(lines, extras)
       end
 
       iron.setup {
@@ -22,14 +22,13 @@ return {
           scratch_repl = true,
           repl_definition = {
             python = {
-              -- command = { 'ipython', '--no-autoindent' },
-              command = {"uv", "run", "ipython", "--no-autoindent"},
+              command = { 'uv', 'run', 'ipython', '--no-autoindent'},
               format = common.bracketed_paste_python,
             },
             r = {
               command = { 'R' },
             },
-            quarto = {
+            markdown = {
               command = { 'ipython', '--no-autoindent' },
               -- command = { 'R' },
               block_dividers = {
@@ -38,15 +37,6 @@ return {
                 '```',
               },
               format = bracketed_paste_quarto,
-            },
-            markdown = {
-              command = { 'ipython', '--no-autoindent' },
-              block_dividers = {
-                '```python',
-                '```r',
-                '```',
-              },
-              send_code_block = common.markdown,
             },
           },
           repl_open_cmd = view.split.vertical.botright '40%',

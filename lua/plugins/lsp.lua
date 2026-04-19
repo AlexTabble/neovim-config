@@ -217,10 +217,10 @@ return {
 
       vim.lsp.enable 'r_language_server'
 
-      -- vim.lsp.enable 'pyrefly'
-      vim.lsp.enable 'pyright'
-      vim.lsp.enable 'ty'
-      -- vim.lsp.enable 'ruff'
+      vim.lsp.enable 'pyrefly'
+      -- vim.lsp.enable 'pyright'
+      -- vim.lsp.enable 'ty'
+      vim.lsp.enable 'ruff'
 
       vim.lsp.enable 'bashls'
 

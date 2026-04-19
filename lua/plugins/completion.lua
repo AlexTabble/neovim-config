@@ -20,7 +20,7 @@ return {
       {
         'saghen/blink.compat',
         dev = false,
-        opts = { impersonate_nvim_cmp = true, enable_events = true, debug = true },
+        opts = {enable_events = true, debug = true },
       },
       {
         'jmbuhr/cmp-pandoc-references',
@@ -38,7 +38,7 @@ return {
     opts = {
       cmdline = {
         enabled = false,
-        impersonate_nvim_cmp = true,
+        -- impersonate_nvim_cmp = true,
       },
 
       sources = {

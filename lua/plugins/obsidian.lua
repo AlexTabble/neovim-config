@@ -5,7 +5,7 @@ return {
   lazy = true,
 
   dependencies = {
-    'nvim-lua/plenary.nvim', -- required
+    'nvim-lua/plenary.nvim',
     'saghen/blink.cmp',
     'nvim-telescope/telescope.nvim',
   },
