@@ -1,3 +1,6 @@
+local api = vim.api
+local ts = vim.treesitter
+
 vim.bo.commentstring = '<!-- %s -->'
 
 -- wrap text, but by word no character
@@ -12,12 +15,14 @@ vim.api.nvim_buf_set_var(0, 'did_ftplugin', true)
 
 -- markdown vs. quarto hacks
 local ns = vim.api.nvim_create_namespace 'QuartoHighlight'
-vim.api.nvim_set_hl(ns, '@markup.strikethrough', { strikethrough = false })
-vim.api.nvim_set_hl(ns, '@markup.doublestrikethrough', { strikethrough = true })
-vim.api.nvim_win_set_hl_ns(0, ns)
+api.nvim_set_hl(ns, '@markup.strikethrough', { strikethrough = false })
+api.nvim_set_hl(ns, '@markup.doublestrikethrough', { strikethrough = true })
+api.nvim_win_set_hl_ns(0, ns)
 
 -- vim.api.nvim_set_hl(0, '@markup.codecell', { bg = '#000055' })
-vim.api.nvim_set_hl(0, '@markup.codecell', {
+api.nvim_set_hl(0, '@markup.codecell', {
   link = 'CursorLine',
 })
+
+ts.start()
 

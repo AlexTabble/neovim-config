@@ -12,13 +12,8 @@ return {
           -- Disable entire built-in ftplugin mappings to avoid conflicts.
           -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
           vim.g.no_plugin_maps = true
-
-          vim.filetype.add {
-            extension = {
-              qmd = 'markdown',
-            },
-          }
         end,
+
         config = function()
           require('nvim-treesitter-textobjects').setup {
             select = {
@@ -26,6 +21,22 @@ return {
               lookahead = true,
             },
           }
+
+          -- temp keymaps
+          vim.keymap.set({ 'n' }, '<leader>4', function()
+            local parser = vim.treesitter.get_parser(0)
+            local root = parser:parse()[1]:root()
+            local query = vim.treesitter.query.parse('markdown', '(fenced_code_block (info_string (language) @lang))')
+            for _, node in query:iter_captures(root, 0) do
+              local text = vim.treesitter.get_node_text(node, 0)
+              print(string.format("language node text: '%s'", text))
+            end
+          end)
+
+          vim.keymap.set({ 'n' }, '<leader>5', function()
+            local query_files = vim.treesitter.query.get_files('markdown', 'highlights')
+            print(string.format('Current Files:', query_files))
+          end)
 
           -- select
           vim.keymap.set({ 'x', 'o' }, 'am', function()
@@ -40,51 +51,11 @@ return {
           vim.keymap.set({ 'x', 'o' }, 'ic', function()
             require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects')
           end)
-          vim.keymap.set({ 'x', 'o' }, 'ab', function()
+          vim.keymap.set({ 'x', 'o' }, 'ib', function()
             require('nvim-treesitter-textobjects.select').select_textobject('@block.inner', 'textobjects')
           end)
           vim.keymap.set({ 'x', 'o' }, 'ab', function()
             require('nvim-treesitter-textobjects.select').select_textobject('@block.outer', 'textobjects')
-          end)
-
-          -- move
-          vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
-            require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-          end)
-          vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
-            require('nvim-treesitter-textobjects.move').goto_next_start('@class.inner', 'textobjects')
-          end)
-          -- You can also pass a list to group multiple queries.
-          vim.keymap.set({ 'n', 'x', 'o' }, ']o', function()
-            require('nvim-treesitter-textobjects.move').goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
-          end)
-          -- You can also use captures from other query groups like `locals.scm` or `folds.scm`
-          vim.keymap.set({ 'n', 'x', 'o' }, ']s', function()
-            require('nvim-treesitter-textobjects.move').goto_next_start('@local.scope', 'locals')
-          end)
-          vim.keymap.set({ 'n', 'x', 'o' }, ']z', function()
-            require('nvim-treesitter-textobjects.move').goto_next_start('@fold', 'folds')
-          end)
-
-          vim.keymap.set({ 'n', 'x', 'o' }, ']M', function()
-            require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-          end)
-          vim.keymap.set({ 'n', 'x', 'o' }, '][', function()
-            require('nvim-treesitter-textobjects.move').goto_next_end('@class.inner', 'textobjects')
-          end)
-
-          vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
-            require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-          end)
-          vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
-            require('nvim-treesitter-textobjects.move').goto_previous_start('@class.inner', 'textobjects')
-          end)
-
-          vim.keymap.set({ 'n', 'x', 'o' }, '[M', function()
-            require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-          end)
-          vim.keymap.set({ 'n', 'x', 'o' }, '[]', function()
-            require('nvim-treesitter-textobjects.move').goto_previous_end('@class.inner', 'textobjects')
           end)
         end,
       },
@@ -94,6 +65,8 @@ return {
     config = function()
       local ts = require 'nvim-treesitter'
       ---@diagnostic disable-next-line: missing-fields
+
+      vim.treesitter.language.register('markdown', { 'quarto' })
       ts.setup {}
       ts.install {
         'r',
@@ -105,6 +78,7 @@ return {
         'yaml',
         'lua',
         'vim',
+        'regex',
         'query',
         'vimdoc',
         'latex', -- requires tree-sitter-cli (installed automatically via Mason)
