@@ -34,6 +34,7 @@ return {
             'tree-sitter-cli',
             'jupytext',
             'pyrefly',
+            'pyright'
           },
         },
       },
@@ -56,7 +57,7 @@ return {
 
           map('gd', vim.lsp.buf.definition, '[g]o to [d]efinition')
           map('gD', vim.lsp.buf.type_definition, '[g]o to type [D]efinition')
-          map('K', vim.lsp.buf.hover, 'Hover')
+          -- map('K', vim.lsp.buf.hover, 'Hover')
           map('<leader>lq', vim.diagnostic.setqflist, '[l]sp diagnostic [q]uickfix')
         end,
       })
@@ -200,31 +201,44 @@ return {
       end
       capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
-      vim.lsp.pyright = {
+      vim.lsp.config.pyright = {
         capabilities = capabilities,
         settings = {
           python = {
             analysis = {
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
-              diagnosticMode = 'workspace',
+              diagnosticMode = 'openFilesOnly',
+
+              typeCheckingMode = 'standard',
+              autoImportCompletions = true,
             },
           },
         },
-        root_markers = { '.git', 'setup.py', 'setup.cfg', 'pyproject.toml', 'requirements.txt' },
+
+        root_markers = {
+          '.git',
+          'pyproject.toml',
+          'setup.py',
+          'setup.cfg',
+          'requirements.txt',
+          'poetry.lock',
+          'uv.lock',
+        },
       }
+      
       vim.lsp.enable 'lua_ls'
 
       vim.lsp.enable 'r_language_server'
 
-      vim.lsp.enable 'pyrefly'
-      -- vim.lsp.enable 'pyright'
+      -- vim.lsp.enable 'pyrefly'
+      vim.lsp.enable 'pyright'
       -- vim.lsp.enable 'ty'
       vim.lsp.enable 'ruff'
 
-      vim.lsp.enable 'bashls'
+      -- vim.lsp.enable 'bashls'
 
-      vim.lsp.enable 'rust_analyzer'
+      -- vim.lsp.enable 'rust_analyzer'
     end,
   },
 }

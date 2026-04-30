@@ -150,9 +150,9 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
-        tabline = {
-          lualine_a = { 'tabs' },
-        },
+        -- tabline = {
+        --   lualine_a = { 'tabs' },
+        -- },
         extensions = { 'oil' },
       }
     end,

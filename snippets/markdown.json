@@ -78,6 +78,13 @@
     "prefix" : "it",
     "body": "*$0*",
     "description": "Italic Font"
+  },
+  "pycode": {
+    "prefix": ["pyc"],
+    "body": ["```{python} ", "$1", "```"]
+  },
+  "rcode": {
+    "prefix": ["rco"],
+    "body": ["```{r} ", "$1", "```"]
   }
-  
 }

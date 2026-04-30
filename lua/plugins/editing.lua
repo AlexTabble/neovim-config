@@ -19,14 +19,6 @@ return {
     branch = 'master',
     config = true,
   },
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('which-key').setup {}
-      require 'config.keymap'
-    end,
-  },
 
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -43,7 +35,7 @@ return {
         -- },
         formatters_by_ft = {
           lua = { 'stylua' },
-          python = { 'isort', 'black' },
+          python = { 'isort', 'black'},
           quarto = { 'injected' },
           markdown = { 'injected' },
           r = { 'styler' },
@@ -145,15 +137,6 @@ return {
       handler_options = {
         search_engine = 'duckduckgo',
       },
-    },
-  },
-  {
-    'lukas-reineke/virt-column.nvim',
-    event = { 'BufReadPre' },
-    lazy = true,
-    opts = {
-      char = '󰮾',
-      virtcolumn = '80',
     },
   },
 }

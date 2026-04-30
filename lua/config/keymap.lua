@@ -104,28 +104,28 @@ wk.add({
       desc = 'Search Marks',
     },
     {
-      '<leader>s',
+      '<M-h>',
       function()
         harpoon:list():select(1)
       end,
       desc = 'M1',
     },
     {
-      '<leader>d',
+      '<M-j>',
       function()
         harpoon:list():select(2)
       end,
       desc = 'M2',
     },
     {
-      '<leader>S',
+      '<M-k>',
       function()
         harpoon:list():select(3)
       end,
       desc = 'M3',
     },
     {
-      '<leader>D',
+      '<M-l>',
       function()
         harpoon:list():select(4)
       end,
