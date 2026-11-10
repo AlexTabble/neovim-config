@@ -16,7 +16,8 @@ require('lazy').setup('plugins', {
     version = false,
   },
   dev = {
-    path = '~/projects',
+
+    path = vim.fn.stdpath 'config' .. '/forks',
     fallback = true,
   },
   install = {

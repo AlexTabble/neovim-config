@@ -6,6 +6,10 @@ return {
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
       {
+        'barreiroleo/ltex_extra.nvim',
+        ft = { 'markdown', 'tex', 'text', 'quarto' },
+      },
+      {
         'mason-org/mason-lspconfig.nvim',
         opts = {
           automatic_enable = false,
@@ -17,8 +21,8 @@ return {
             'yamlls',
             'clangd',
             'texlab',
-            'ltex',
             'rust_analyzer',
+            'vale_ls',
           },
         },
       },
@@ -34,7 +38,7 @@ return {
             'tree-sitter-cli',
             'jupytext',
             'pyrefly',
-            'pyright'
+            'pyright',
           },
         },
       },
@@ -83,24 +87,27 @@ return {
       })
 
       vim.lsp.config.ltex = {
-        on_attach = function()
-          require('ltex_extra').setup {
-            -- This is where your dictionary will be stored! Replace this path with
-            -- whatever you want!
-            path = vim.fn.expand '~' .. '/.config/nvim/ltex',
-          }
-          -- ...
-        end,
+        filetypes = { 'markdown', 'text', 'tex', 'gitcommit', 'quarto' },
+
         settings = {
           ltex = {
+            language = 'en-ZA',
+
             additionalRules = {
               enablePickyRules = true,
             },
-            language = 'en-ZA',
           },
         },
-        filetypes = { 'markdown', 'text', 'tex', 'gitcommit' },
-        flags = { debounce_text_changes = 300 },
+
+        on_attach = function(client, bufnr)
+          require('ltex_extra').setup {
+            path = vim.fn.expand '~/.config/nvim/ltex',
+          }
+        end,
+
+        flags = {
+          debounce_text_changes = 300,
+        },
       }
 
       vim.lsp.config.r_language_server = {
@@ -184,15 +191,34 @@ return {
         filetypes = { 'python' },
       }
 
+      vim.lsp.config.clangd = {
+        capabilities = capabilities,
+      }
+
       vim.lsp.config.pyrefly = {
         capabilities = capabilities,
         filetypes = { 'python' },
       }
 
       vim.lsp.config.rust_analyzer = {
-        capabilities = capabilities,
-        filetypes = { 'rust' },
-        root_markers = { '.git', 'Cargo.toml' },
+        settings = {
+          ['rust-analyzer'] = {
+            imports = {
+              granularity = {
+                group = 'module',
+              },
+              prefix = 'self',
+            },
+            cargo = {
+              buildScripts = {
+                enable = true,
+              },
+            },
+            procMacro = {
+              enable = true,
+            },
+          },
+        },
       }
 
       if capabilities.workspace == nil then
@@ -226,7 +252,13 @@ return {
           'uv.lock',
         },
       }
-      
+
+      vim.lsp.config.vale_ls = {
+        capabilities = capabilities,
+        filetypes = { 'markdown', 'quarto' },
+        root_markers = { '.vale.ini', '.git' },
+      }
+
       vim.lsp.enable 'lua_ls'
 
       vim.lsp.enable 'r_language_server'
@@ -234,11 +266,14 @@ return {
       -- vim.lsp.enable 'pyrefly'
       vim.lsp.enable 'pyright'
       -- vim.lsp.enable 'ty'
-      vim.lsp.enable 'ruff'
+      -- vim.lsp.enable 'ruff'
 
-      -- vim.lsp.enable 'bashls'
+      vim.lsp.enable 'texlab'
+      -- vim.lsp.enable 'ltex'
+      -- vim.lsp.enable 'vale_ls'
 
-      -- vim.lsp.enable 'rust_analyzer'
+      vim.lsp.enable 'rust_analyzer'
+      vim.lsp.enable 'clangd'
     end,
   },
 }

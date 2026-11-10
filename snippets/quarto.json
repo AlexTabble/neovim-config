@@ -313,7 +313,7 @@
     "prefix": "yml"
   },
   "project euler header": {
-    "body": ["---","title: $1","image: ../euler.jpg","---"],
+    "body": ["---","title: $1","image: ../euler.jpg","---","","::: {.callout-important}","# Problem","",":::"],
     "description": "Project Euler yaml header",
     "prefix": "pe"
   },

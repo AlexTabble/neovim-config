@@ -11,6 +11,14 @@
     "prefix": "$$",
     "body": ["\\$$", "${0}", "\\$$"]
   },
+  "Binomial Coefficient": {
+    "prefix": "bin",
+    "body": "\\binom{$1}{$2}"
+  },
+  "Power":{
+    "prefix": "rd",
+    "body": "^{$1}"
+  },
   "img": {
     "prefix": ["img"],
     "body": ["![](./img/$1)"]
@@ -67,6 +75,11 @@
       "\\end{${1:environment}}"
     ],
     "description": "LaTeX environment block"
+  },
+  
+  "bb": {
+    "prefix": "bb",
+    "body": "\\mathbb{$1}"
   },
   "bold" : {
     "prefix" : "bf",

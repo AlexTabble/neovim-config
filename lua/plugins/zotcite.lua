@@ -5,7 +5,7 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   lazy = true,
-  ft = {'tex'},
+  ft = {'tex','quarto'},
   config = function()
     require('zotcite').setup {
     }

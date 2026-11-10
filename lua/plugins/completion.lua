@@ -14,7 +14,7 @@ return {
       {
         'saghen/blink.compat',
         dev = false,
-        opts = {enable_events = true, debug = true },
+        opts = { enable_events = true, debug = true },
       },
       {
         'jmbuhr/cmp-pandoc-references',
@@ -40,8 +40,8 @@ return {
 
         per_filetype = {
           tex = { 'lsp', 'snippets', 'path', 'buffer', 'latex' },
-          markdown = { 'lsp', 'snippets', 'path', 'buffer', 'obsidian' },
-          quarto = { 'lsp', 'snippets', 'path', 'buffer','latex' },
+          markdown = { 'lsp', 'snippets', 'path', 'buffer' },
+          quarto = { 'lsp', 'snippets', 'path', 'buffer', 'latex' },
         },
 
         providers = {
@@ -64,9 +64,9 @@ return {
         },
       },
 
-      appearance = {
-        use_nvim_cmp_as_default = true,
-      },
+      -- appearance = {
+      --   use_nvim_cmp_as_default = true,
+      -- },
 
       completion = {
         documentation = {

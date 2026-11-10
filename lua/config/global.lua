@@ -18,11 +18,10 @@ vim.opt.mousefocus = true
 -- working around wl-copy stealing focus
 -- vim.g.clipboard = 'osc52'
 
-vim.o.clipboard = "unnamedplus"
+vim.o.clipboard = 'unnamedplus'
 -- vim.o.clipboard = ""
 
-
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 vim.opt.timeoutlen = 400 -- until which-key pops up
 vim.opt.updatetime = 250 -- for autocommands and hovers
@@ -68,8 +67,6 @@ vim.opt.completeopt = 'menuone,noinsert'
 
 -- global statusline
 vim.opt.laststatus = 3
-
-
 
 -- hide cmdline when not used
 vim.opt.cmdheight = 1
@@ -119,6 +116,5 @@ vim.cmd.packadd 'cfilter'
 
 -- use commands
 
-vim.api.nvim_create_user_command("CopyRelPath", "call setreg('+', expand('%'))", {})
-vim.api.nvim_create_user_command("CopyPath", "call setreg('+', expand('%:p'))", {})
-
+vim.api.nvim_create_user_command('CopyRelPath', "call setreg('+', expand('%'))", {})
+vim.api.nvim_create_user_command('CopyPath', "call setreg('+', expand('%:p'))", {})

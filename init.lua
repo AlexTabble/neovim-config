@@ -2,22 +2,22 @@ require 'config.global'
 require 'config.lazy'
 require 'config.autocommands'
 
--- vim.cmd.colorscheme 'tokyonight-night'
-vim.cmd.colorscheme 'cyberdream'
+
+require('nvim-web-devicons').set_icon {
+  qmd = {
+    icon = '',
+    color = '#519aba',
+    name = 'Quarto',
+  },
+}
+
+vim.cmd.colorscheme 'tokyonight-night'
+-- vim.cmd.colorscheme 'cyberdream'
 -- vim.cmd.colorscheme 'rose-pine'
+-- vim.cmd.colorscheme 'gruvbox'
 
--- use latest treesitter
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '<filetype>' },
-  callback = function()
-    vim.treesitter.start()
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    vim.wo[0][0].foldmethod = 'expr'
-  end,
-})
-
--- transparent background if needed
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })
 
 -- vim.cmd([[
 --   highlight Normal guibg=none
@@ -25,4 +25,3 @@ vim.api.nvim_create_autocmd('FileType', {
 --   highlight Normal ctermbg=none
 --   highlight NonText ctermbg=none
 -- ]])
---

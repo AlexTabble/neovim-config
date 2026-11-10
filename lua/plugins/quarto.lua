@@ -17,7 +17,7 @@ return {
     dependencies = {
       -- for language features in code cells
       -- configured in lua/plugins/lsp.lua
-      'jmbuhr/otter.nvim',
+      { 'forks/otter.nvim', dev = true, opts = {} },
       'nvim-treesitter/nvim-treesitter',
     },
   },

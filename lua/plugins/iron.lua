@@ -39,6 +39,12 @@ return {
               },
               format = bracketed_paste_quarto,
             },
+            rust = {
+              command = { 'evcxr' },
+            },
+            cpp = {
+              command = { 'clang-repl' },
+            },
 
             markdown = {
               command = { 'ipython', '--no-autoindent' },

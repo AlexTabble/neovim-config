@@ -35,11 +35,12 @@ return {
         -- },
         formatters_by_ft = {
           lua = { 'stylua' },
-          python = { 'isort', 'black'},
+          python = { 'ruff_format' },
           quarto = { 'injected' },
           markdown = { 'injected' },
           r = { 'styler' },
           rust = { 'rustfmt' },
+          cpp = { 'clang-format' },
         },
         formatters = {
           -- mystylua = {
@@ -115,7 +116,9 @@ return {
         show_hidden = true,
       },
     },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     keys = {
       { '-', ':Oil<cr>', desc = 'oil' },
       { '<leader>e', ':Oil<cr>', desc = 'edit [f]iles' },

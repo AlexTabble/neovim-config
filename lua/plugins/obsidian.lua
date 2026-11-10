@@ -38,14 +38,14 @@ return {
       enable = false,
     },
 
-    completion = {
-      blink = true,
-      nvim_cmp = false,
-      min_chars = 1,
-    },
+    -- completion = {
+    --   -- blink = true,
+    --   nvim_cmp = false,
+    --   min_chars = 2,
+    -- },
 
     picker = {
-      name = 'telescope',
+      name = 'telescope.nvim',
     },
 
     frontmatter = {
